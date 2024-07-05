@@ -1,20 +1,21 @@
 // components/Exhibitions.js
 import React from "react";
-import "./Exhibitions.css"; // Import the CSS file for styling
+import { didi, kubal, map, nike } from "../assets";
+import SimpleBtn from "./buttons/SimpleBtn";
 
 const exhibitions = [
   {
-    img: "/path/to/nike-art-gallery.jpg", // Replace with actual path
+    img: nike,
     name: "Nike art gallery",
     location: "Lagos, Nigeria",
   },
   {
-    img: "/path/to/kubal-center.jpg", // Replace with actual path
+    img: kubal,
     name: "Kubal center",
     location: "Nairobi, Kenya",
   },
   {
-    img: "/path/to/didi-museum.jpg", // Replace with actual path
+    img: didi,
     name: "Didi museum",
     location: "Lagos, Nigeria",
   },
@@ -22,19 +23,60 @@ const exhibitions = [
 
 const Exhibitions = () => {
   return (
-    <section className="exhibitions-section">
-      <h2>Discover Exhibitions in Africa</h2>
-      <div className="map-and-list">
-        <div className="map">
-          <img src="/path/to/map-image.png" alt="Map of Africa" />{" "}
-          {/* Replace with actual path */}
+    <section className="bg-gradient-to-b from-[#0F0A0F] to-[#302B30] text-white px-6 w-full flex flex-col h-fit justify-between items-center py-16">
+      <h2 className="text-3xl font-semibold mb-8 text-center uppercase">
+        Discover Exhibitions in Africa
+      </h2>
+      <div className="flex lgss:hidden flex-col py-10 lgss:w-[60%] justify-between items-start">
+        <div className="lgss:w-[40%] py-7 flex justify-end items-end">
+          <img src={map} alt="Map of Africa" className="w-auto h-auto" />
         </div>
-        <div className="exhibitions-list">
+        <div className="lgss:w-1/3 flex flex-col justify-start w-full items-start space-y-4">
+          <div className="flex lgss:max-w-[600px] w-full items-end justify-end py-6">
+            <SimpleBtn className="px-[32px] border-white border">
+              See more
+            </SimpleBtn>
+          </div>
           {exhibitions.map((exhibition, index) => (
-            <div key={index} className="exhibition-item">
-              <img src={exhibition.img} alt={exhibition.name} />
-              <div className="exhibition-info">
-                <h3>{exhibition.name}</h3>
+            <div
+              key={index}
+              className="flex items-center w-full space-x-8 lgss:max-w-[600px] bg-[#1E1E1E]"
+            >
+              <img
+                src={exhibition.img}
+                alt={exhibition.name}
+                className="w-24 h-auto"
+              />
+              <div className="text-left space-y-1">
+                <h3 className="text-xl font-semibold">{exhibition.name}</h3>
+                <p>{exhibition.location}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="lgss:flex hidden flex-row py-10 lgss:w-[60%] justify-between items-start">
+        <div className="lgss:w-[40%] py-7 flex justify-end items-end">
+          <img src={map} alt="Map of Africa" className="w-auto h-auto" />
+        </div>
+        <div className="lgss:w-1/3 flex flex-col justify-start w-full items-start space-y-4">
+          <div className="flex lgss:max-w-[600px] w-full items-end justify-end py-6">
+            <SimpleBtn className="px-[32px] border-white border">
+              See more...
+            </SimpleBtn>
+          </div>
+          {exhibitions.map((exhibition, index) => (
+            <div
+              key={index}
+              className="flex items-center w-full space-x-5 lgss:max-w-[600px] bg-[#1E1E1E]"
+            >
+              <img
+                src={exhibition.img}
+                alt={exhibition.name}
+                className="w-24 h-auto"
+              />
+              <div className="text-left space-y-1">
+                <h3 className="text-xl font-semibold">{exhibition.name}</h3>
                 <p>{exhibition.location}</p>
               </div>
             </div>
