@@ -1,6 +1,6 @@
-function SimpleBtn({ className, children }) {
+function SimpleBtn({ className, children, onClick }) {
   return (
-    <button
+    <button onClick={onClick}
       className={`bg-transparent text-white py-3 text-sm rounded-[24px] font-medium ${className}`}
     >
       {children}

@@ -10,6 +10,12 @@ import map from "../assets/images/map.png";
 import didi from "../assets/images/didi.png";
 import nike from "../assets/images/nike.png";
 import kubal from "../assets/images/kubal.png";
+import gallery1 from "../assets/images/gallery1.png";
+import gallery2 from "../assets/images/gallery2.png";
+import gallery3 from "../assets/images/gallery3.png";
+import gallery4 from "../assets/images/gallery4.png";
+import gallery5 from "../assets/images/gallery5.png";
+import gallery6 from "../assets/images/gallery6.png";
 
 export {
   heroImg1,
@@ -24,4 +30,10 @@ export {
   didi,
   nike,
   kubal,
+  gallery1,
+  gallery2,
+  gallery3,
+  gallery4,
+  gallery5,
+  gallery6,
 };

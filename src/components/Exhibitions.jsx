@@ -2,6 +2,7 @@
 import React from "react";
 import { didi, kubal, map, nike } from "../assets";
 import SimpleBtn from "./buttons/SimpleBtn";
+import { useNavigate } from "react-router-dom";
 
 const exhibitions = [
   {
@@ -22,6 +23,10 @@ const exhibitions = [
 ];
 
 const Exhibitions = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/galleries");
+  };
   return (
     <section className="bg-gradient-to-b from-[#0F0A0F] to-[#302B30] text-white px-6 w-full flex flex-col h-fit justify-between items-center py-16">
       <h2 className="text-3xl font-semibold mb-8 text-center uppercase">
@@ -61,7 +66,10 @@ const Exhibitions = () => {
         </div>
         <div className="lgss:w-1/3 flex flex-col justify-start w-full items-start space-y-4">
           <div className="flex lgss:max-w-[600px] w-full items-end justify-end py-6">
-            <SimpleBtn className="px-[32px] border-white border">
+            <SimpleBtn
+              onClick={handleClick}
+              className="px-[32px] border-white border"
+            >
               See more...
             </SimpleBtn>
           </div>
