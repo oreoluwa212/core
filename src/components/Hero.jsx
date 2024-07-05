@@ -3,6 +3,7 @@ import { FaPlay } from "react-icons/fa";
 import { heroImg1, heroImg2, heroImg3, heroEllipse } from "../assets";
 import Header from "./Header";
 import SimpleBtn from "./buttons/SimpleBtn";
+import HeaderText from "./textComponents/HeaderText";
 
 const images = [heroImg1, heroImg2, heroImg3];
 
@@ -15,6 +16,12 @@ const Hero = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  const title = "Art For Africa";
+  const subtitle =
+    "Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art.";
+  const description =
+    "Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art. Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art. Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art. Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art.";
 
   return (
     <div className="relative w-full lgss:h-screen font-montserrat bg-primary text-white">
@@ -40,31 +47,21 @@ const Hero = () => {
               className="absolute inset-0 w-full h-screen object-cover"
             />
           </div>
-          <div className="relative z-10 lgss:w-[85%] space-y-7 py-10">
-            <h1 className="pb-8 text-5xl font-medium text-white">
-              Art For Africa
-            </h1>
-            <h2 className="text-2xl text-white mt-4">
-              Connecting African Art Enthusiasts Across the Continent: Invest in
-              the Future of African Art.
-            </h2>
-            <p className="text-sm font-extralight">
-              Connecting African Art Enthusiasts Across the Continent: Invest in
-              the Future of African Art.Connecting African Art Enthusiasts
-              Across the Continent: Invest in the Future of African
-              Art.Connecting African Art Enthusiasts Across the Continent:
-              Invest in the Future of African Art.Connecting African Art
-              Enthusiasts Across the Continent: Invest in the Future of African
-              Art.
-            </p>
+          <div className="relative z-10 lgss:w-[85%]">
+            <HeaderText
+              className={"space-y-7 py-10"}
+              title={title}
+              subtitle={subtitle}
+              description={description}
+            />
             <div className="pt-4 flex gap-5 items-center">
-              <SimpleBtn className={"px-[32px] flex gap-2"}>
+              <SimpleBtn className="px-[32px] flex gap-2">
                 <div className="rounded-full p-[5px] bg-white">
                   <FaPlay className="text-black text-[8px]" />
                 </div>
                 Learn more
               </SimpleBtn>
-              <SimpleBtn className={"px-[32px] border-white border"}>
+              <SimpleBtn className="px-[32px] border-white border">
                 Get Started
               </SimpleBtn>
             </div>
