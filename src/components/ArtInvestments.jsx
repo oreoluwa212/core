@@ -1,15 +1,12 @@
 import React from "react";
+import { nft1 } from "../assets";
 
 const ArtInvestments = () => {
   return (
-    <div className="flex justify-around py-8 bg-gray-900 text-white">
-      <div className="flex flex-col items-center text-center">
+    <div className="flex justify-around py-8 bg-gradient-to-r from-[#0B0B0B] to-[#3B3B3B] text-white">
+      <div className="flex items-center text-center bg-[#1E1E1E] w-[20%]">
         <div className="mb-4">
-          <img
-            src="/path/to/your/image1.png"
-            alt="NFT Artworks"
-            className="w-12 h-12"
-          />
+          <img src={nft1} alt="NFT Artworks" className="w-12 h-12" />
         </div>
         <div>
           <h3 className="text-lg font-semibold">NFT Artworks</h3>
@@ -20,7 +17,7 @@ const ArtInvestments = () => {
           </p>
         </div>
       </div>
-      <div className="flex flex-col items-center text-center">
+      <div className="flex items-center text-center">
         <div className="mb-4">
           <img
             src="/path/to/your/image2.png"
