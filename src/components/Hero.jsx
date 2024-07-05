@@ -17,7 +17,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen font-montserrat bg-primary text-white">
+    <div className="relative w-full lgss:h-screen font-montserrat bg-primary text-white">
       <Header />
       <div className="flex flex-col-reverse lgss:flex-row-reverse w-full h-full">
         <div className="lgss:w-[65%] relative flex h-[50vh] lgss:h-full">
