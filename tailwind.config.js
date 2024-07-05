@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#111111",
+        joinInBg: "#0E0E0E",
         footerBg: "#313233",
       },
       fontFamily: {

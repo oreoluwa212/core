@@ -5,6 +5,7 @@ import heroImg4 from "../assets/images/heroImg4.png";
 import logo from "../assets/images/logo.png";
 import heroEllipse from "../assets/images/heroEllipse.svg";
 import footerCountryUK from "../assets/images/footerCountryUK.png";
+import artifact from "../assets/images/artifact.png";
 import map from "../assets/images/map.png";
 import didi from "../assets/images/didi.png";
 import nike from "../assets/images/nike.png";
@@ -18,6 +19,7 @@ export {
   heroEllipse,
   logo,
   footerCountryUK,
+  artifact,
   map,
   didi,
   nike,
