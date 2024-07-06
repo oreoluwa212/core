@@ -50,8 +50,8 @@ const Exhibitions = () => {
           See more...
         </SimpleBtn>
       </div>
-      <div className="flex lgss:hidden flex-col py-10 w-full justify-center items-center">
-        <div className="w-[40%] py-7 flex justify-end items-end">
+      <div className="flex lgss:hidden flex-col lgss:py-10 w-full justify-center items-center">
+        <div className="w-[60%] py-7 flex justify-end items-end">
           <img src={map} alt="Map of Africa" className="w-auto h-auto" />
         </div>
         <div className="w-[90%] flex flex-col justify-start items-start space-y-4">

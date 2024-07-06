@@ -3,7 +3,7 @@ import ArtInvestCard from "./cards/landingPage/ArtInvestCard";
 
 const ArtInvestments = () => {
   return (
-    <div className="flex flex-wrap gap-7 justify-around py-16 text-white bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B] to-[#3B3B3B] px-[5%]">
+    <div className="flex flex-wrap gap-7 justify-around py-16 text-white bg-gradient-to-r from-black to-[#3B3B3B] px-[5%]">
       <ArtInvestCard
         imageSrc={nft1}
         title="NFT Artworks"
