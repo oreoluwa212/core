@@ -7,7 +7,7 @@ const SmallCard = ({ image, title, artist, price }) => {
         <img
           src={image}
           alt={title}
-          className="h-full w-full object-cover rounded-lg mb-4"
+          className="h-full w-full object-cover rounded-t-lg mb-4"
         />
       </div>
       <div className="px-3 pb-3 text-gray-400 text-center">

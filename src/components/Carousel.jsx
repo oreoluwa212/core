@@ -72,7 +72,7 @@ const Carousel = ({ cards }) => {
 
       <div className="w-[70%] mt-5 py-10 overflow-hidden">
         <div
-          className="flex transition-transform duration-500"
+          className="flex transition-transform justify-end items-end duration-500"
           style={{
             transform: `translateX(-${
               currentIndex * (cardWidth + cardMargin)
