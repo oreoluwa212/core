@@ -18,6 +18,7 @@ import gallery5 from "../assets/images/gallery5.png";
 import gallery6 from "../assets/images/gallery6.png";
 import nft1 from "../assets/images/nft1.png";
 import art1 from "../assets/images/art1.png";
+import cloud from "../assets/images/cloud.png";
 
 export {
   heroImg1,
@@ -40,4 +41,5 @@ export {
   gallery6,
   nft1,
   art1,
+  cloud,
 };

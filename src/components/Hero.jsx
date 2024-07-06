@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FaPlay } from "react-icons/fa";
-import { heroImg1, heroImg2, heroImg3, heroEllipse } from "../assets";
+import { heroImg1, heroImg2, heroImg3, heroEllipse, heroImg4 } from "../assets";
 import Header from "./Header";
 import SimpleBtn from "./buttons/SimpleBtn";
 import { useNavigate } from "react-router-dom";
 
-const images = [heroImg1, heroImg2, heroImg3];
+const images = [heroImg1, heroImg2, heroImg3, heroImg4];
 
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
