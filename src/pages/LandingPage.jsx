@@ -9,7 +9,7 @@ const LandingPage = () => {
   return (
     <>
       <Hero />
-      {/* <ArtInvestments/> */}
+      <ArtInvestments/>
       <Exhibitions/>
       <JoinInFree/>
       <Footer/>

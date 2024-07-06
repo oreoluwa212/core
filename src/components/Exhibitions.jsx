@@ -1,6 +1,8 @@
-// components/Exhibitions.js
 import React from "react";
 import { didi, kubal, map, nike } from "../assets";
+import {
+  FaAngleDown
+} from "react-icons/fa";
 import SimpleBtn from "./buttons/SimpleBtn";
 import { useNavigate } from "react-router-dom";
 
@@ -32,11 +34,27 @@ const Exhibitions = () => {
       <h2 className="text-3xl font-semibold mb-8 text-center uppercase">
         Discover Exhibitions in Africa
       </h2>
-      <div className="flex lgss:hidden flex-col py-10 lgss:w-[60%] justify-between items-start">
-        <div className="lgss:w-[40%] py-7 flex justify-end items-end">
+      <div className="flex lgss:flex-row flex-col justify-between items-center w-full lgss:w-[78%] py-6">
+        <div className="px-[5%]">
+          <SimpleBtn
+            onClick={handleClick}
+            className="px-[32px] flex items-center gap-3"
+          >
+            Select a location <FaAngleDown />
+          </SimpleBtn>
+        </div>
+        <SimpleBtn
+          onClick={handleClick}
+          className="px-[32px] lgss:flex hidden border-white border"
+        >
+          See more...
+        </SimpleBtn>
+      </div>
+      <div className="flex lgss:hidden flex-col py-10 w-full justify-center items-center">
+        <div className="w-[40%] py-7 flex justify-end items-end">
           <img src={map} alt="Map of Africa" className="w-auto h-auto" />
         </div>
-        <div className="lgss:w-1/3 flex flex-col justify-start w-full items-start space-y-4">
+        <div className="w-[90%] flex flex-col justify-start items-start space-y-4">
           <div className="flex lgss:max-w-[600px] w-full items-end justify-end py-6">
             <SimpleBtn className="px-[32px] border-white border">
               See more
@@ -45,7 +63,7 @@ const Exhibitions = () => {
           {exhibitions.map((exhibition, index) => (
             <div
               key={index}
-              className="flex items-center w-full space-x-8 lgss:max-w-[600px] bg-[#1E1E1E]"
+              className="flex items-center w-full space-x-4 lgss:max-w-[600px] bg-[#1E1E1E]"
             >
               <img
                 src={exhibition.img}
@@ -53,26 +71,18 @@ const Exhibitions = () => {
                 className="w-24 h-auto"
               />
               <div className="text-left space-y-1">
-                <h3 className="text-xl font-semibold">{exhibition.name}</h3>
-                <p>{exhibition.location}</p>
+                <h3 className="text-lg font-semibold">{exhibition.name}</h3>
+                <p className="text-sm">{exhibition.location}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
-      <div className="lgss:flex hidden flex-row py-10 lgss:w-[60%] justify-between items-start">
-        <div className="lgss:w-[40%] py-7 flex justify-end items-end">
+      <div className="lgss:flex hidden flex-row w-[80%] justify-between items-center">
+        <div className="w-[30%] lgsx:w-full h-full py-7 flex justify-center items-center">
           <img src={map} alt="Map of Africa" className="w-auto h-auto" />
         </div>
-        <div className="lgss:w-1/3 flex flex-col justify-start w-full items-start space-y-4">
-          <div className="flex lgss:max-w-[600px] w-full items-end justify-end py-6">
-            <SimpleBtn
-              onClick={handleClick}
-              className="px-[32px] border-white border"
-            >
-              See more...
-            </SimpleBtn>
-          </div>
+        <div className="w-[50%] lgsx:w-full flex flex-col justify-start items-start space-y-4">
           {exhibitions.map((exhibition, index) => (
             <div
               key={index}
@@ -81,7 +91,7 @@ const Exhibitions = () => {
               <img
                 src={exhibition.img}
                 alt={exhibition.name}
-                className="w-24 h-auto"
+                className="w- h-auto"
               />
               <div className="text-left space-y-1">
                 <h3 className="text-xl font-semibold">{exhibition.name}</h3>

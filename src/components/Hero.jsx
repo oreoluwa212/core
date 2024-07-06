@@ -9,10 +9,11 @@ const images = [heroImg1, heroImg2, heroImg3];
 
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
-      const navigate = useNavigate();
-      const handleBtnClick = () => {
-        navigate("/galleries");
-      };
+  const navigate = useNavigate();
+
+  const handleBtnClick = () => {
+    navigate("/galleries");
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -37,7 +38,7 @@ const Hero = () => {
             />
           ))}
         </div>
-        <div className="relative lgss:w-[45%] flex flex-col justify-center lgss:items-start px-[5%] pt-16 h-fit py-3 lgss:h-screen">
+        <div className="relative lgss:w-[45%] flex flex-col justify-center lgss:items-start px-0 lgss:px-[5%] pt-16 h-fit py-3 lgss:h-screen">
           <div className="absolute top-0 left-[-10%] h-full lgss:w-[140%]">
             <img
               src={heroEllipse}
@@ -45,7 +46,7 @@ const Hero = () => {
               className="absolute inset-0 w-full h-screen object-cover"
             />
           </div>
-          <div className="relative z-10 lgss:w-[85%] space-y-7 py-10">
+          <div className="relative z-10 w-full space-y-7 py-10 px-8 lgss:bg-none lgss:bg-opacity-0 bg-black bg-opacity-65 lgss:p-0">
             <h1 className="pb-8 text-5xl font-medium text-white">
               Art For Africa
             </h1>
@@ -53,7 +54,7 @@ const Hero = () => {
               Connecting African Art Enthusiasts Across the Continent: Invest in
               the Future of African Art.
             </h2>
-            <p className="text-sm font-extralight">
+            <p className="text-sm font-light lgss:font-extralight">
               Connecting African Art Enthusiasts Across the Continent: Invest in
               the Future of African Art.Connecting African Art Enthusiasts
               Across the Continent: Invest in the Future of African
@@ -69,7 +70,10 @@ const Hero = () => {
                 </div>
                 Learn more
               </SimpleBtn>
-              <SimpleBtn onClick={handleBtnClick} className={"px-[32px] border-white border"}>
+              <SimpleBtn
+                onClick={handleBtnClick}
+                className={"px-[32px] border-white border"}
+              >
                 Get Started
               </SimpleBtn>
             </div>
