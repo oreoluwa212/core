@@ -2,13 +2,14 @@ import React from "react";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
 import SimpleBtn from "./buttons/SimpleBtn";
 import { logo } from "../assets";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full flex justify-between items-center py-6 px-[5%] bg-black text-white z-50">
-      <div className="">
+      <Link to={"/"}>
         <img src={logo} alt="Logo" />
-      </div>
+      </Link>
       <nav className="hidden lgss:flex font-medium gap-[4rem]">
         <a href="#artworks" className="hover:underline">
           Artworks
