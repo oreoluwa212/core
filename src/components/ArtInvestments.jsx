@@ -1,5 +1,5 @@
 import { art1, nft1 } from "../assets";
-import ArtInvestCard from "./cards/ArtInvestCard";
+import ArtInvestCard from "./cards/landingPage/ArtInvestCard";
 
 const ArtInvestments = () => {
   return (
