@@ -1,2 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+@media (max-width: 990px) {
+   .custom-width {
+      width: 70%;
+   }
+}
+@media (max-width: 768px) {
+   .custom-width {
+      width: 50%;
+   }
+}
+
+@media (max-width: 580px) {
+   .custom-width {
+      width: 100%;
+   }
+}

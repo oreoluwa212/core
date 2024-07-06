@@ -1,4 +1,3 @@
-import React from "react";
 import { art1, nft1 } from "../assets";
 import ArtInvestCard from "./cards/ArtInvestCard";
 
@@ -9,11 +8,13 @@ const ArtInvestments = () => {
         imageSrc={nft1}
         title="NFT Artworks"
         description="Buy and Sell"
+        btnText={"See more..."}
       />
       <ArtInvestCard
         imageSrc={art1}
         title="Invest in art"
         description="Own quality art with as little as $1"
+        btnText={"View options..."}
       />
     </div>
   );
