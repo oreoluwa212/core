@@ -22,7 +22,9 @@ const Header = () => {
         </a>
       </nav>
       <div className="hidden lgss:flex space-x-7 items-center">
-        <PiShoppingCartSimpleFill className="text-2xl" />
+        <Link to={"/cart"}>
+          <PiShoppingCartSimpleFill className="text-2xl" />
+        </Link>
         <SimpleBtn className={"px-[32px]"}>Log In</SimpleBtn>
         <SimpleBtn className={"px-[32px] border-white border"}>
           Sign Up
