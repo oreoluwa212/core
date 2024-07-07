@@ -38,8 +38,8 @@ const ProductsPage = () => {
   const [activeScreen, setActiveScreen] = useState(1);
   const navigate = useNavigate();
   const handleImageClick = (img) => {
-      navigate("item-details", { state: { img } });
-    };
+    navigate("/galleries/products/item-details", { state: { img } });
+  };
 
   return (
     <div className="w-full font-montserrat bg-white text-black">

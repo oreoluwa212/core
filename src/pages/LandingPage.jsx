@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import JoinInFree from "../components/JoinInFree";
@@ -61,6 +62,17 @@ const cards = [
 ];
 
 const LandingPage = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.sectionId) {
+      const element = document.getElementById(location.state.sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
   return (
     <>
       <section id="home">

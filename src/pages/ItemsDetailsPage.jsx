@@ -83,9 +83,7 @@ function ItemDetailsPage() {
               </div>
             </div>
           </div>
-        ) : (
-          <p>No image selected</p>
-        )}
+        ) : null}
       </div>
     </div>
   );
