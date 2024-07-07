@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import { FaAngleDown } from "react-icons/fa";
 import { footerCountryUK } from "../assets";
+import TransparentBtn from "../components/buttons/TransparentBtn";
 
 function ItemDetailsPage() {
   const location = useLocation();
@@ -62,23 +63,13 @@ function ItemDetailsPage() {
                   <span className="text-sm text-gray-500">Free Shipping</span>
                 </div>
                 <div className="mt-5 flex gap-8">
-                  <button className="bg-black text-white py-2 px-4 rounded-[20px]">
-                    Added to cart ✓
-                  </button>
-                  <button className="border-2 py-2 px-4 rounded-[20px]">
-                    Invest
-                  </button>
+                  <TransparentBtn btnText={"Add to cart"} />
+                  <TransparentBtn btnText={"Invest"} />
                 </div>
-                <div className="mt-7 flex flex-wrap md:flex-row gap-8">
-                  <button className="border-2 py-2 px-4 rounded-[20px]">
-                    Message
-                  </button>
-                  <button className="border-2 py-2 px-4 rounded-[20px]">
-                    Share
-                  </button>
-                  <button className="border-2 py-2 px-4 rounded-[20px]">
-                    Sell Yours
-                  </button>
+                <div className="mt-7 flex flex-wrap md:flex-row gap-8 w-full lgss:flex-row justify-between lgss:pr-[20%]">
+                  <TransparentBtn btnText={"Message"} />
+                  <TransparentBtn btnText={"Share"} />
+                  <TransparentBtn btnText={"Sell Yours"} />
                 </div>
               </div>
             </div>
