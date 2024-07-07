@@ -8,10 +8,10 @@ const SliderArrow = ({
   totalSlides,
 }) => {
   return (
-    <div className="w-[80%] gap-5 flex justify-between items-center h-full">
+    <div className="w-[70%] gap-5 flex justify-between items-center my-4 h-full">
       <button
         onClick={onPrevClick}
-        className="text-white p-3 rounded-[12px] shadow-lg bg-[#101010]"
+        className="text-white p-3 h-16 w-16 flex justify-center items-center rounded-[16px] shadow-sm bg-[#101010]"
       >
         <FaArrowLeft />
       </button>
@@ -28,7 +28,7 @@ const SliderArrow = ({
       </div>
       <button
         onClick={onNextClick}
-        className="text-white p-2 rounded-[24px] shadow-lg bg-[#101010]"
+        className="text-white p-3 h-16 w-16 flex justify-center items-center rounded-[16px] shadow-sm bg-[#101010]"
       >
         <FaArrowRight />
       </button>

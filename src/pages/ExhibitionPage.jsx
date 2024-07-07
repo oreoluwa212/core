@@ -86,7 +86,7 @@ const ExhibitionPage = () => {
               <GalleriesImages />
               <BlackBtn
                 onClick={handleBtnClick}
-                className={"w-[50%] mt-5 py-4"}
+                className={"w-[55%] mt-5 py-[12px] bg-[#000000E5]"}
               >
                 See more...
               </BlackBtn>

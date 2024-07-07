@@ -5,7 +5,7 @@ import { latest1, latest2 } from "../assets";
 import SliderArrow from "./sliders/SliderArrow";
 
 const LatestArtCarousel = () => {
-  const cardWidth = 500;
+  const cardWidth = 350;
   const cardMarginPercentage = 3;
   const cardMargin = (window.innerWidth * cardMarginPercentage) / 100;
   const transitionDuration = 500;
@@ -118,7 +118,7 @@ const LatestArtCard = ({ imageSrc, title, cardWidth, cardMargin }) => {
       className="bg-transparent shadow-sm h-fit border-gray-300 shadow-gray-500 rounded-[8px] min-h-[160px] flex-shrink-0"
       style={{ width: `${cardWidth}px`, marginRight: `${cardMargin}px` }}
     >
-      <div className="h-[300px]">
+      <div className="h-[200px]">
         <img
           src={imageSrc}
           className="rounded-t-[8px] w-full h-full"

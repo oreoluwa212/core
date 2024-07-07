@@ -11,11 +11,11 @@ const Header = () => {
         <img src={logo} alt="Logo" />
       </Link>
       <nav className="hidden lgss:flex font-medium gap-[4rem]">
+        <a href="#home" className="hover:underline">
+          Home
+        </a>
         <a href="#artworks" className="hover:underline">
           Artworks
-        </a>
-        <a href="#invest" className="hover:underline">
-          Invest
         </a>
         <a href="#about" className="hover:underline">
           About
