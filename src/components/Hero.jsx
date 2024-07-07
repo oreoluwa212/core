@@ -12,7 +12,7 @@ const Hero = () => {
   const navigate = useNavigate();
 
   const handleBtnClick = () => {
-    navigate("/galleries");
+    navigate("/galleries/products");
   };
 
   useEffect(() => {
