@@ -63,12 +63,18 @@ const cards = [
 const LandingPage = () => {
   return (
     <>
-      <Hero />
-      <ArtInvestments />
-      <Carousel cards={cards} />
-      <LatestArtCarousel />
+      <section id="home">
+        <Hero />
+      </section>
+      <section id="artworks">
+        <ArtInvestments />
+        <Carousel cards={cards} />
+        <LatestArtCarousel />
+      </section>
       <Exhibitions />
-      <JoinInFree />
+      <section id="about">
+        <JoinInFree />
+      </section>
       <Footer />
     </>
   );
