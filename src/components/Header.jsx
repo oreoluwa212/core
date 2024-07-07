@@ -47,8 +47,10 @@ const Header = () => {
         </SimpleBtn>
       </div>
       <div className="flex lgss:hidden text-white text-2xl gap-7">
-        <PiShoppingCartSimpleFill/>
-        <GiHamburgerMenu/>
+        <Link to={"/cart"}>
+          <PiShoppingCartSimpleFill />
+        </Link>
+        <GiHamburgerMenu />
       </div>
     </header>
   );

@@ -22,7 +22,7 @@ const headerTexts = [
 
 function JoinInFree() {
   return (
-    <div className="w-full flex lgss:flow-row flex-col h-full bg-joinInBg font-montserrat py-16 px-[5%]">
+    <div className="w-full flex h-full bg-joinInBg font-montserrat py-16 px-[5%]">
       <div className="flex flex-col h-full lgss:w-[50%] lgss:pr-[10%]">
         <HeaderText className={"text-white"} title={"Join in free"} />
         {headerTexts.map((header, index) => (
@@ -35,9 +35,9 @@ function JoinInFree() {
           />
         ))}
         <div className="pt-14 flex lgss:flex-row flex-col w-full lgss:space-x-7 items-center">
-          <SimpleBtn className={"lgss:px-[32px] w-[45%]"}>Log In</SimpleBtn>
+          <SimpleBtn className={"lgss:w-[25%] w-[45%]"}>Log In</SimpleBtn>
           <SimpleBtn
-            className={"px-6 w-[50%] lgss:px-[32px] border-white border"}
+            className={"px-6 w-[50%] lgss:w-[25%] border-white border"}
           >
             Sign Up
           </SimpleBtn>
