@@ -62,11 +62,11 @@ function ItemDetailsPage() {
                 <div className="flex items-center">
                   <span className="text-sm text-gray-500">Free Shipping</span>
                 </div>
-                <div className="mt-5 flex gap-8">
+                <div className="mt-5 flex gap-8 flex-col lgss:flex-row">
                   <TransparentBtn btnText={"Add to cart"} />
                   <TransparentBtn btnText={"Invest"} />
                 </div>
-                <div className="mt-7 flex flex-wrap md:flex-row gap-8 w-full lgss:flex-row justify-between lgss:pr-[20%]">
+                <div className="mt-7 flex flex-col md:flex-row gap-8 w-full lgss:flex-row justify-between lgss:pr-[20%]">
                   <TransparentBtn btnText={"Message"} />
                   <TransparentBtn btnText={"Share"} />
                   <TransparentBtn btnText={"Sell Yours"} />

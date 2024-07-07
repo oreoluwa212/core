@@ -51,9 +51,11 @@ const ProductsPage = () => {
         />
         <div className="w-full px-[15%] lgss:px-0">
           <ProductSlider products={products} />
+          </div>
+        <div className="w-full px-[5%] lgss:px-0">
           <div className="w-full flex flex-col pt-7">
             <div className="w-full lgss:px-5 lgss:h-[80px] h-fit lgss:py-0 py-4 flex lgss:flex-row flex-col gap-2 justify-between">
-              <div className="flex lgss:flex-row  lgss:px-8 gap-5 justify-start items-center text-primary font-medium h-[92px] ">
+              <div className="flex lgss:flex-row flex-col lgss:px-8 gap-5 justify-start lgss:items-center text-primary font-medium h-[92px] ">
                 <p>Artwork type:</p>
                 <div className="">
                   <button
@@ -100,7 +102,7 @@ const ProductsPage = () => {
               </div>
               <a
                 href="#language"
-                className="hover:underline flex text-[18px] gap-4 items-center uppercase"
+                className="hover:underline flex text-[18px] py-4 lgss:py-0 gap-4 items-center uppercase"
               >
                 <span>
                   <img src={footerCountryUK} alt="uk logo" />

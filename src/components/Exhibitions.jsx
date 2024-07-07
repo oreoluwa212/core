@@ -2,7 +2,7 @@ import React from "react";
 import { didi, kubal, map, nike } from "../assets";
 import { FaAngleDown } from "react-icons/fa";
 import SimpleBtn from "./buttons/SimpleBtn";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const exhibitions = [
   {
@@ -54,9 +54,11 @@ const Exhibitions = () => {
         </div>
         <div className="w-[90%] flex flex-col justify-start items-start space-y-4">
           <div className="flex lgss:max-w-[600px] w-full items-end justify-end py-6">
+            <Link to={"/galleries"}>
             <SimpleBtn className="px-[32px] border-white border">
               See more
             </SimpleBtn>
+            </Link>
           </div>
           {exhibitions.map((exhibition, index) => (
             <div

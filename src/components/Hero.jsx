@@ -50,11 +50,11 @@ const Hero = () => {
             <h1 className="pb-8 lgss:text-5xl text-3xl font-medium text-white">
               Art For Africa
             </h1>
-            <h2 className="text-2xl text-white mt-4">
+            <h2 className="text-[20px] lgss:text-2xl text-white mt-4">
               Connecting African Art Enthusiasts Across the Continent: Invest in
               the Future of African Art.
             </h2>
-            <p className="text-sm font-light lgss:font-extralight">
+            <p className="lgss:text-sm font-extralight">
               Connecting African Art Enthusiasts Across the Continent: Invest in
               the Future of African Art.Connecting African Art Enthusiasts
               Across the Continent: Invest in the Future of African

@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { item1a } from "../assets";
 import Header from "../components/Header";
-import { FaPlus, FaMinus } from "react-icons/fa"; // Assuming you use react-icons for the plus and minus icons
+import { FaPlus, FaMinus } from "react-icons/fa";
 
 function CartPage() {
   return (
     <div className="w-full font-montserrat bg-white text-black">
       <Header />
-      <div className="py-[5%] mt-16 w-full flex flex-col justify-between gap-16 lg:px-[5%]">
+      <div className="py-[5%] lgss:mt-16 w-full flex flex-col justify-between gap-16 lg:px-[5%]">
         <div className="overflow-x-auto mt-14 pt-5">
           <table className="min-w-full hidden md:table">
             <thead>
@@ -61,7 +61,6 @@ function CartPage() {
             </tbody>
           </table>
 
-          {/* Mobile View */}
           <div className="md:hidden">
             <div className="flex flex-col border-b border-black py-6 px-5">
               <div className="flex items-start mb-4">
@@ -96,54 +95,16 @@ function CartPage() {
                   </button>
                 </div>
               </div>
-              <div className="flex justify-between">
-                <span className="font-medium">Total:</span>
-                <span>€ 2,000</span>
-              </div>
-            </div>
-            <div className="flex flex-col border-b border-black py-6 px-5">
-              <div className="flex items-start mb-4">
-                <img
-                  src={item1a}
-                  alt="Heaven on Earth"
-                  className="w-24 h-24 object-cover mr-4"
-                />
-                <div>
-                  <p className="text-lg font-medium">Heaven on Earth</p>
-                  <p className="text-sm text-gray-500">(Album)</p>
-                </div>
-              </div>
-              <div className="flex justify-between mb-4">
-                <span className="font-medium">Price:</span>
-                <span>€ 2,000</span>
-              </div>
-              <div className="flex justify-between mb-4">
-                <span className="font-medium">Quantity:</span>
-                <div className="flex items-center">
-                  <button className="border p-1">
-                    <FaMinus />
-                  </button>
-                  <input
-                    type="text"
-                    value="1"
-                    readOnly
-                    className="w-12 text-center mx-2 border"
-                  />
-                  <button className="border p-1">
-                    <FaPlus />
-                  </button>
-                </div>
-              </div>
-              <div className="flex justify-between">
+              <div className="hidden lgss:flex justify-between">
                 <span className="font-medium">Total:</span>
                 <span>€ 2,000</span>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex justify-end mt-12 pt-12">
+        <div className="flex justify-center lgss:justify-end mt-12 lgss:pt-12">
           <Link to={"/checkout"}>
-            <button className="bg-black text-white px-6 py-3 rounded-full">
+            <button className="bg-black text-white px-16 lgss:px-6 py-3 lgss: w-full rounded-full">
               PROCEED TO CHECKOUT
             </button>
           </Link>
