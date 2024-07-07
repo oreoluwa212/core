@@ -27,6 +27,18 @@ import product3 from "../assets/images/product3.png";
 import product4 from "../assets/images/product4.png";
 import latest1 from "../assets/images/latest1.png";
 import latest2 from "../assets/images/latest2.png";
+import item1a from "../assets/images/item1a.png";
+import item1b from "../assets/images/item1b.png";
+import item1c from "../assets/images/item1c.png";
+import item1d from "../assets/images/item1d.png";
+import item2a from "../assets/images/item2a.png";
+import item2b from "../assets/images/item2b.png";
+import item2c from "../assets/images/item2c.png";
+import item2d from "../assets/images/item2d.png";
+import item3a from "../assets/images/item3a.png";
+import item3b from "../assets/images/item3b.png";
+import item3c from "../assets/images/item3c.png";
+import item3d from "../assets/images/item3d.png";
 
 export {
   heroImg1,
@@ -58,4 +70,16 @@ export {
   product4,
   latest1,
   latest2,
+  item1a,
+  item1b,
+  item1c,
+  item1d,
+  item2a,
+  item2b,
+  item2c,
+  item2d,
+  item3a,
+  item3b,
+  item3c,
+  item3d,
 };
