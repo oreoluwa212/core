@@ -60,17 +60,6 @@ const Carousel = ({ cards }) => {
         subtitle={"PHYSICAL | DIGITAL | NFT"}
         className={"text-center text-white"}
       />
-      <a
-        href="#language"
-        className="hover:underline flex gap-4 items-end justify-end w-[70%] text-white uppercase py-6"
-      >
-        <span>
-          <img src={footerCountryUK} alt="uk logo" />
-        </span>
-        language
-        <FaAngleDown />
-      </a>
-
       <div className="w-full flex justify-center items-center">
       <div className="w-[80%] lgss:mt-5 lgss:py-10 overflow-hidden">
         <div
