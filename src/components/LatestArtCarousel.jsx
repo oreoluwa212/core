@@ -66,9 +66,9 @@ const LatestArtCarousel = () => {
     <div className="relative w-full overflow-hidden flex flex-col justify-between items-center bg-[#111111] py-10 px-4 h-fit">
       <HeaderText
         title={"LATEST IN THE WORLD OF ART"}
-        className={"text-center text-white"}
+        className={"text-center text-white px-10"}
       />
-      <div className="w-[80%] flex gap-10 justify-center mt-5 py-10 overflow-hidden relative">
+      <div className="w-[80%] flex gap-10 justify-center mt-5 lgss:py-10 overflow-hidden relative">
         <div
           className="flex"
           ref={sliderRef}
@@ -111,19 +111,19 @@ const LatestArtCarousel = () => {
     </div>
   );
 };
-
 const LatestArtCard = ({ imageSrc, title, cardWidth, cardMargin }) => {
   return (
     <div
-      className="bg-transparent shadow-sm h-fit border-gray-300 shadow-gray-500 rounded-[8px] min-h-[160px] flex-shrink-0"
-      style={{ width: `${cardWidth}px`, marginRight: `${cardMargin}px` }}
+      className="bg-transparent shadow-sm h-fit border-gray-300 w-full shadow-gray-500 lgss:w-[350px] my-4 rounded-[8px] min-h-[160px] flex-shrink-0 relative"
+      style={{ marginRight: `${cardMargin}px` }}
     >
-      <div className="h-[200px]">
+      <div className="h-[200px] relative">
         <img
           src={imageSrc}
-          className="rounded-t-[8px] w-full h-full"
+          className="rounded-t-[8px] w-full h-full object-cover"
           alt={title}
         />
+        <div className="absolute inset-0 bg-black opacity-50 rounded-t-[8px]"></div>
       </div>
       <div className="py-8 text-white">
         <h1 className="lgss:text-2xl text-sm text-center font-semibold px-1">

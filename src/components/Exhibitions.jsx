@@ -31,7 +31,7 @@ const Exhibitions = () => {
   };
   return (
     <section className="bg-gradient-to-b from-[#0F0A0F] to-[#302B30] text-white px-6 w-full flex flex-col h-fit justify-between items-center py-16">
-      <h2 className="text-3xl font-semibold mb-8 text-center uppercase">
+      <h2 className="text-[26px] font-semibold mb-8 px-2 text-center uppercase">
         Discover Exhibitions in Africa
       </h2>
       <div className="flex lgss:flex-row flex-col justify-between items-center w-full lgss:w-[78%] py-6">

@@ -1,5 +1,6 @@
 import React from "react";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
+import { GiHamburgerMenu } from "react-icons/gi";
 import SimpleBtn from "./buttons/SimpleBtn";
 import { logo } from "../assets";
 import { Link, useNavigate } from "react-router-dom";
@@ -44,6 +45,10 @@ const Header = () => {
         <SimpleBtn className={"px-[32px] border-white border"}>
           Sign Up
         </SimpleBtn>
+      </div>
+      <div className="flex lgss:hidden text-white text-2xl gap-7">
+        <PiShoppingCartSimpleFill/>
+        <GiHamburgerMenu/>
       </div>
     </header>
   );

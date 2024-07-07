@@ -9,7 +9,7 @@ import { footerCountryUK } from "../assets";
 import SliderArrow from "./sliders/SliderArrow";
 
 const Carousel = ({ cards }) => {
-  const cardWidth = 288;
+  const cardWidth = 150;
   const visibleCards = 3;
   const cardMargin = 16;
   const transitionDuration = 500;
@@ -72,7 +72,7 @@ const Carousel = ({ cards }) => {
       </a>
 
       <div className="w-full flex justify-center items-center">
-      <div className="w-[80%] mt-5 py-10 overflow-hidden">
+      <div className="w-[80%] lgss:mt-5 lgss:py-10 overflow-hidden">
         <div
           className="flex transition-transform justify-end gap-12 items-end duration-500"
           style={{

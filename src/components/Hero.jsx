@@ -23,7 +23,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full lgss:h-screen font-montserrat bg-primary text-white">
+    <div className="relative w-full lgss:h-screen font-montserrat lgss:bg-primary bg-black text-white">
       <Header />
       <div className="flex flex-col lgss:flex-row-reverse w-full h-full">
         <div className="lgss:w-[65%] relative flex h-[50vh] lgss:h-full">
@@ -32,7 +32,7 @@ const Hero = () => {
               key={index}
               src={image}
               alt={`Slide ${index}`}
-              className={`absolute w-full lgss:h-full transition-opacity duration-1000 ease-in-out ${
+              className={`absolute w-full h-full transition-opacity duration-1000 ease-in-out ${
                 index === currentImage ? "opacity-100" : "opacity-0"
               }`}
             />
