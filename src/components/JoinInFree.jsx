@@ -24,11 +24,12 @@ function JoinInFree() {
   return (
     <div className="w-full flex h-full bg-joinInBg font-montserrat py-16 px-[5%]">
       <div className="flex flex-col h-full w-[50%] lgss:pr-[10%]">
-        <HeaderText title={"Join in free"} />
+        <HeaderText className={"text-white"} title={"Join in free"} />
         {headerTexts.map((header, index) => (
           <HeaderText
             key={index}
             title={header.title}
+            className={"text-white"}
             subtitle={header.subtitle}
             description={header.description}
           />

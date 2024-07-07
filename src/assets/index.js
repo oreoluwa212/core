@@ -21,6 +21,12 @@ import art1 from "../assets/images/art1.png";
 import cloud from "../assets/images/cloud.png";
 import ray from "../assets/images/ray.png";
 import flower from "../assets/images/flower.png";
+import product1 from "../assets/images/product1.png";
+import product2 from "../assets/images/product2.png";
+import product3 from "../assets/images/product3.png";
+import product4 from "../assets/images/product4.png";
+import latest1 from "../assets/images/latest1.png";
+import latest2 from "../assets/images/latest2.png";
 
 export {
   heroImg1,
@@ -46,4 +52,10 @@ export {
   cloud,
   flower,
   ray,
+  product1,
+  product2,
+  product3,
+  product4,
+  latest1,
+  latest2,
 };

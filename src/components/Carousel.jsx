@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import SmallCard from "./cards/landingPage/SmallCard";
 import LargeCard from "./cards/landingPage/LargeCard";
-import { FaAngleDown, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 import SimpleBtn from "./buttons/SimpleBtn";
 import { Link } from "react-router-dom";
 import HeaderText from "./textComponents/HeaderText";
 import { footerCountryUK } from "../assets";
+import SliderArrow from "./sliders/SliderArrow";
 
 const Carousel = ({ cards }) => {
   const cardWidth = 288;
@@ -53,11 +54,11 @@ const Carousel = ({ cards }) => {
     (currentIndex % cards.length) * (100 / cards.length);
 
   return (
-    <div className="relative w-full overflow-hidden flex flex-col justify-between items-center bg-[#111111] py-10 px-4 h-fit">
+    <div className="relative w-full overflow-hidden flex flex-col justify-center items-center bg-[#111111] py-10 px-4 h-fit">
       <HeaderText
         title={"BUY AND INVEST ART COMMISSION - FREE"}
-        subtitle={"PHISICAL | DIGITAL | NFT"}
-        className={"text-center"}
+        subtitle={"PHYSICAL | DIGITAL | NFT"}
+        className={"text-center text-white"}
       />
       <a
         href="#language"
@@ -70,9 +71,10 @@ const Carousel = ({ cards }) => {
         <FaAngleDown />
       </a>
 
-      <div className="w-[70%] mt-5 py-10 overflow-hidden">
+      <div className="w-full flex justify-center items-center">
+      <div className="w-[80%] mt-5 py-10 overflow-hidden">
         <div
-          className="flex transition-transform justify-end items-end duration-500"
+          className="flex transition-transform justify-end gap-12 items-end duration-500"
           style={{
             transform: `translateX(-${
               currentIndex * (cardWidth + cardMargin)
@@ -89,11 +91,6 @@ const Carousel = ({ cards }) => {
               className={`flex-shrink-0 cursor-pointer transition-transform duration-500 ${
                 expandedCardIndex === index % cards.length ? "scale-150" : ""
               }`}
-              onClick={() => handleCardClick(index % cards.length)}
-              style={{
-                width: `${cardWidth}px`,
-                marginRight: `${cardMargin}px`,
-              }}
             >
               {card.type === "small" ? (
                 <SmallCard {...card} />
@@ -104,38 +101,19 @@ const Carousel = ({ cards }) => {
           ))}
         </div>
       </div>
+      </div>
 
-      <div className=" bottom-0 left-0 w-full flex flex-col justify-center my-3 items-center">
-        <div className="px-[10%] w-[90%] flex justify-between items-center h-full">
-          <button
-            onClick={prevSlide}
-            className="text-white p-2 rounded-[24px] bg-[#101010] shadow-lg"
-          >
-            <FaArrowLeft />
-          </button>
-          <div className="relative w-full mt-4">
-            <div className="h-[1px] w-[80%] mx-auto bg-white">
-              <div
-                className="h-[3px] bg-white transition-transform duration-500"
-                style={{
-                  width: `${100 / cards.length}%`,
-                  transform: `translateX(${indicatorPosition}%)`,
-                }}
-              />
-            </div>
-          </div>
-          <button
-            onClick={nextSlide}
-            className="text-white p-2 rounded-[24px] bg-[#101010] shadow-lg"
-          >
-            <FaArrowRight />
-          </button>
-        </div>
-        <div className="w-full flex my-5 justify-center items-center">
-          <Link to={"/galleries/products"}>
-            <SimpleBtn className={"px-[32px] border"}>See more</SimpleBtn>
-          </Link>
-        </div>
+      <SliderArrow
+        onPrevClick={prevSlide}
+        onNextClick={nextSlide}
+        indicatorPosition={indicatorPosition}
+        totalSlides={cards.length}
+      />
+
+      <div className="w-full flex my-5 justify-center items-center">
+        <Link to={"/galleries/products"}>
+          <SimpleBtn className={"px-[32px] border"}>See more</SimpleBtn>
+        </Link>
       </div>
     </div>
   );

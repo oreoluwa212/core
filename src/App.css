@@ -1,14 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-@media (max-width: 990px) {
+.custom-arrow {
+   z-index: 2;
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+}
+
+.custom-next-arrow {
+   right: 10px;
+}
+
+.arrow {
+   padding: 14px;
+   background: black;
+   height: 50px;
+   width: 50px;
+   border-radius: 10px;
+   color: white;
+   margin-left: 40px;
+   margin-top: -40px;
+   box-shadow: 2px 2px 2px 0px black;
+}
+
+.slider-container {
+   position: relative;
+}
+
+.slider-wrapper {
+   position: relative;
+   width: 100%;
+}
+
+@media (min-width: 1001px) {
    .custom-width {
-      width: 70%;
+      width: 25%;
    }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
    .custom-width {
-      width: 50%;
+      width: 80%;
    }
 }
 
