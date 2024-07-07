@@ -23,6 +23,7 @@ import {
 import ProductSlider from "../components/cards/products/ProductSlider";
 import { FaAngleDown } from "react-icons/fa";
 import ProductText from "../components/textComponents/ProductText";
+import { useNavigate } from "react-router-dom";
 
 const products = [
   { img: product1, text: "Digital Art" },
@@ -35,6 +36,10 @@ const products = [
 
 const ProductsPage = () => {
   const [activeScreen, setActiveScreen] = useState(1);
+  const navigate = useNavigate();
+  const handleImageClick = (img) => {
+      navigate("item-details", { state: { img } });
+    };
 
   return (
     <div className="w-full font-montserrat bg-white text-black">
@@ -109,7 +114,10 @@ const ProductsPage = () => {
                 <>
                   <div className="flex lgss:flex-row flex-col w-full gap-5">
                     <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
+                      <div
+                        className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+                        onClick={() => handleImageClick(item1a)}
+                      >
                         <div className="w-full">
                           <img
                             src={item1a}
@@ -132,7 +140,10 @@ const ProductsPage = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
+                      <div
+                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+                        onClick={() => handleImageClick(item1b)}
+                      >
                         <div className="w-full">
                           <img
                             src={item1b}
@@ -155,7 +166,10 @@ const ProductsPage = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
+                      <div
+                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+                        onClick={() => handleImageClick(item1c)}
+                      >
                         <div className="w-full">
                           <img
                             src={item1c}
@@ -178,7 +192,10 @@ const ProductsPage = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
+                      <div
+                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+                        onClick={() => handleImageClick(item1d)}
+                      >
                         <div className="w-full">
                           <img
                             src={item1d}
@@ -203,7 +220,10 @@ const ProductsPage = () => {
                       </div>
                     </div>
                     <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
+                      <div
+                        className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+                        onClick={() => handleImageClick(item2a)}
+                      >
                         <div className="w-full">
                           <img
                             src={item2a}
@@ -226,7 +246,10 @@ const ProductsPage = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
+                      <div
+                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+                        onClick={() => handleImageClick(item2b)}
+                      >
                         <div className="w-full">
                           <img
                             src={item2b}
@@ -249,7 +272,10 @@ const ProductsPage = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
+                      <div
+                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+                        onClick={() => handleImageClick(item2d)}
+                      >
                         <div className="w-full">
                           <img
                             src={item2d}
@@ -272,7 +298,10 @@ const ProductsPage = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
+                      <div
+                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+                        onClick={() => handleImageClick(item2c)}
+                      >
                         <div className="w-full">
                           <img
                             src={item2c}
@@ -295,7 +324,10 @@ const ProductsPage = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
+                      <div
+                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+                        onClick={() => handleImageClick(item2d)}
+                      >
                         <div className="w-full">
                           <img
                             src={item2d}
@@ -320,7 +352,10 @@ const ProductsPage = () => {
                       </div>
                     </div>
                     <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
+                      <div
+                        className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+                        onClick={() => handleImageClick(item3a)}
+                      >
                         <div className="w-full">
                           <img
                             src={item3a}
@@ -343,7 +378,10 @@ const ProductsPage = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
+                      <div
+                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+                        onClick={() => handleImageClick(item3b)}
+                      >
                         <div className="w-full">
                           <img
                             src={item3b}
@@ -366,7 +404,10 @@ const ProductsPage = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
+                      <div
+                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+                        onClick={() => handleImageClick(item3c)}
+                      >
                         <div className="w-full">
                           <img
                             src={item3c}
@@ -389,7 +430,10 @@ const ProductsPage = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
+                      <div
+                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+                        onClick={() => handleImageClick(item3d)}
+                      >
                         <div className="w-full">
                           <img
                             src={item3d}
