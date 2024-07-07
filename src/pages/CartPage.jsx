@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { item1a } from "../assets";
 import Header from "../components/Header";
 import { FaPlus, FaMinus } from "react-icons/fa"; // Assuming you use react-icons for the plus and minus icons
@@ -12,23 +13,23 @@ function CartPage() {
           <table className="min-w-full hidden md:table">
             <thead>
               <tr>
-                <th className="px-[9.3%] border-b border-black py-3 text-left">
+                <th className="px-[8%] border-b border-black py-3 text-left">
                   Artwork
                 </th>
-                <th className="px-6 py-3 border-b border-black text-left">
-                  Quantity
-                </th>
-                <th className="px-6 py-3 border-b border-black text-left">
+                <th className="px-7 py-3 border-b border-black text-left">
                   Price
                 </th>
-                <th className="px-6 py-3 border-b border-black text-left">
+                <th className="px-8 py-3 border-b border-black text-left">
+                  Quantity
+                </th>
+                <th className="px-7 py-3 border-b border-black text-left">
                   Total
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="px-6 py-6 flex items-start">
+                <td className="py-6 flex items-start">
                   <img
                     src={item1a}
                     alt="Heaven on Earth"
@@ -39,23 +40,23 @@ function CartPage() {
                     <p className="text-sm text-gray-500">(Album)</p>
                   </div>
                 </td>
+                <td className="px-6 text-left">€ 2,000</td>
                 <td className="px-6 text-left">
                   <div className="flex items-center">
-                    <button className="border p-1">
+                    <button className="p-1">
                       <FaMinus />
                     </button>
                     <input
                       type="text"
                       value="1"
                       readOnly
-                      className="w-12 text-center mx-2 border"
+                      className="w-12 text-center mx-2"
                     />
-                    <button className="border p-1">
+                    <button className="p-1">
                       <FaPlus />
                     </button>
                   </div>
                 </td>
-                <td className="px-6 text-left">€ 2,000</td>
                 <td className="px-6 text-left">€ 2,000</td>
               </tr>
             </tbody>
@@ -142,9 +143,11 @@ function CartPage() {
           </div>
         </div>
         <div className="flex justify-end mt-12 pt-12">
+         <Link to={"/checkout"}>
           <button className="bg-black text-white px-6 py-3 rounded-full">
             PROCEED TO CHECKOUT
           </button>
+         </Link>
         </div>
       </div>
     </div>
