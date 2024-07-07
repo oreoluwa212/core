@@ -47,7 +47,7 @@ const Hero = () => {
             />
           </div>
           <div className="relative z-10 w-full space-y-7 py-10 px-8 lgss:bg-none lgss:bg-opacity-0 bg-black bg-opacity-65 lgss:p-0">
-            <h1 className="pb-8 text-5xl font-medium text-white">
+            <h1 className="pb-8 lgss:text-5xl text-3xl font-medium text-white">
               Art For Africa
             </h1>
             <h2 className="text-2xl text-white mt-4">
