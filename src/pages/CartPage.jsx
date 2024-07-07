@@ -9,7 +9,6 @@ function CartPage() {
       <Header />
       <div className="py-[5%] mt-16 w-full flex flex-col justify-between gap-16 lg:px-[5%]">
         <div className="overflow-x-auto mt-14 pt-5">
-          {/* Desktop Table */}
           <table className="min-w-full hidden md:table">
             <thead>
               <tr>
@@ -143,11 +142,11 @@ function CartPage() {
           </div>
         </div>
         <div className="flex justify-end mt-12 pt-12">
-         <Link to={"/checkout"}>
-          <button className="bg-black text-white px-6 py-3 rounded-full">
-            PROCEED TO CHECKOUT
-          </button>
-         </Link>
+          <Link to={"/checkout"}>
+            <button className="bg-black text-white px-6 py-3 rounded-full">
+              PROCEED TO CHECKOUT
+            </button>
+          </Link>
         </div>
       </div>
     </div>

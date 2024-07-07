@@ -14,7 +14,10 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/galleries" element={<ExhibitionPage />} />
         <Route path="/galleries/products" element={<ProductsPage />} />
-        <Route path="/galleries/products/item-details" element={<ItemDetailsPage />} />
+        <Route
+          path="/galleries/products/item-details"
+          element={<ItemDetailsPage />}
+        />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>

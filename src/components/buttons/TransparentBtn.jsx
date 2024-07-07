@@ -6,4 +6,4 @@ function TransparentBtn({ btnText }) {
   );
 }
 
-export default TransparentBtn
+export default TransparentBtn;

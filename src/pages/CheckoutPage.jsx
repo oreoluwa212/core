@@ -107,8 +107,8 @@ const OrderSummary = () => {
     <div className="bg-gray-100 p-4 rounded-md shadow-sm">
       <h3 className="font-semibold text-lg mb-2">Order Summary</h3>
       <div className="flex w-full justify-between items-center">
-      <p className="my-2">1 item in cart</p>
-      <FaAngleDown/>
+        <p className="my-2">1 item in cart</p>
+        <FaAngleDown />
       </div>
       <hr />
     </div>

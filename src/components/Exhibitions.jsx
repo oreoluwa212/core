@@ -1,8 +1,6 @@
 import React from "react";
 import { didi, kubal, map, nike } from "../assets";
-import {
-  FaAngleDown
-} from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 import SimpleBtn from "./buttons/SimpleBtn";
 import { useNavigate } from "react-router-dom";
 

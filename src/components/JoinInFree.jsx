@@ -36,7 +36,9 @@ function JoinInFree() {
         ))}
         <div className="pt-14 flex lgss:flex-row flex-col w-full lgss:space-x-7 items-center">
           <SimpleBtn className={"lgss:px-[32px] w-[45%]"}>Log In</SimpleBtn>
-          <SimpleBtn className={"px-6 w-[50%] lgss:px-[32px] border-white border"}>
+          <SimpleBtn
+            className={"px-6 w-[50%] lgss:px-[32px] border-white border"}
+          >
             Sign Up
           </SimpleBtn>
         </div>
@@ -48,4 +50,4 @@ function JoinInFree() {
   );
 }
 
-export default JoinInFree
+export default JoinInFree;
