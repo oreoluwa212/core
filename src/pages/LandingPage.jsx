@@ -6,48 +6,48 @@ import JoinInFree from "../components/JoinInFree";
 import Exhibitions from "../components/Exhibitions";
 import ArtInvestments from "../components/ArtInvestments";
 import Carousel from "../components/Carousel";
-import { cloud, flower, heroImg4, ray } from "../assets";
+import { cloud, flower, heroImg1, heroImg4, item1c, item2b, item2c, item2d, item3a, ray } from "../assets";
 import LatestArtCarousel from "../components/LatestArtCarousel";
 
 const cards = [
   {
     type: "large",
-    image: heroImg4,
+    image: item1c,
     title: "Vulnerable",
     artist: "Tayo Buju",
     price: "€ 2,000",
   },
   {
     type: "small",
-    image: cloud,
-    title: "Cloud",
-    artist: "Mike Bee",
-    price: "€ 4,000",
-  },
-  {
-    type: "small",
-    image: cloud,
-    title: "Cloud",
-    artist: "Mike Bee",
-    price: "€ 4,000",
-  },
-  {
-    type: "small",
-    image: ray,
+    image: heroImg1,
     title: "Cloud",
     artist: "Mike Bee",
     price: "€ 4,000",
   },
   {
     type: "large",
-    image: heroImg4,
+    image: item3a,
     title: "Vulnerable",
     artist: "Tayo Buju",
     price: "€ 2,000",
   },
   {
     type: "small",
-    image: cloud,
+    image: item2b,
+    title: "Cloud",
+    artist: "Mike Bee",
+    price: "€ 4,000",
+  },
+  {
+    type: "small",
+    image: item2d,
+    title: "Cloud",
+    artist: "Mike Bee",
+    price: "€ 4,000",
+  },
+  {
+    type: "small",
+    image: item2c,
     title: "Cloud",
     artist: "Mike Bee",
     price: "€ 4,000",

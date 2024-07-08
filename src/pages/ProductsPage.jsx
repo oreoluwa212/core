@@ -11,6 +11,7 @@ import {
   item2b,
   item2c,
   item2d,
+  item2e,
   item3a,
   item3b,
   item3c,
@@ -44,7 +45,7 @@ const ProductsPage = () => {
   const productDetails1 = [
     {
       img: item1a,
-      title: "Black Sound",
+      title: "Heaven on Earth",
       subtitle: "Sarah Ojunnwa, Nairobi Kenya",
       description: "2014. Oil linen canvas",
       description1: "200 x 350. Sounds (Album)",
@@ -52,7 +53,7 @@ const ProductsPage = () => {
     },
     {
       img: item1b,
-      title: "Black Sound",
+      title: "Purple Silk",
       subtitle: "Sarah Ojunnwa, Nairobi Kenya",
       description: "2014. Oil linen canvas",
       description1: "200 x 350. Sounds (Album)",
@@ -60,15 +61,15 @@ const ProductsPage = () => {
     },
     {
       img: item1c,
-      title: "Black Sound",
+      title: "Rainbow Rose",
       subtitle: "Sarah Ojunnwa, Nairobi Kenya",
       description: "2014. Oil linen canvas",
       description1: "200 x 350. Sounds (Album)",
-      price: 2000,
+      price: 1500,
     },
     {
       img: item1d,
-      title: "Black Sound",
+      title: "Mayetta",
       subtitle: "Sarah Ojunnwa, Nairobi Kenya",
       description: "2014. Oil linen canvas",
       description1: "200 x 350. Sounds (Album)",
@@ -79,15 +80,15 @@ const ProductsPage = () => {
   const productDetails2 = [
     {
       img: item2a,
-      title: "Black Sound",
+      title: "Rainbow Vision",
       subtitle: "Sarah Ojunnwa, Nairobi Kenya",
       description: "2014. Oil linen canvas",
       description1: "200 x 350. Sounds (Album)",
-      price: 2000,
+      price: 6000,
     },
     {
       img: item2b,
-      title: "Black Sound",
+      title: "Vibrating Wave",
       subtitle: "Sarah Ojunnwa, Nairobi Kenya",
       description: "2014. Oil linen canvas",
       description1: "200 x 350. Sounds (Album)",
@@ -95,7 +96,7 @@ const ProductsPage = () => {
     },
     {
       img: item2c,
-      title: "Black Sound",
+      title: "Egyptian Writing",
       subtitle: "Sarah Ojunnwa, Nairobi Kenya",
       description: "2014. Oil linen canvas",
       description1: "200 x 350. Sounds (Album)",
@@ -103,18 +104,26 @@ const ProductsPage = () => {
     },
     {
       img: item2d,
-      title: "Black Sound",
+      title: "Traditional Masks",
       subtitle: "Sarah Ojunnwa, Nairobi Kenya",
       description: "2014. Oil linen canvas",
       description1: "200 x 350. Sounds (Album)",
-      price: 2000,
+      price: 200,
+    },
+    {
+      img: item2e,
+      title: "Paint Brush",
+      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
+      description: "2014. Oil linen canvas",
+      description1: "200 x 350. Sounds (Album)",
+      price: 4000,
     },
   ];
 
   const productDetails3 = [
     {
       img: item3a,
-      title: "Black Sound",
+      title: "Yellow Oil Wave",
       subtitle: "Sarah Ojunnwa, Nairobi Kenya",
       description: "2014. Oil linen canvas",
       description1: "200 x 350. Sounds (Album)",
@@ -122,7 +131,7 @@ const ProductsPage = () => {
     },
     {
       img: item3b,
-      title: "Black Sound",
+      title: "Africana",
       subtitle: "Sarah Ojunnwa, Nairobi Kenya",
       description: "2014. Oil linen canvas",
       description1: "200 x 350. Sounds (Album)",
@@ -130,7 +139,7 @@ const ProductsPage = () => {
     },
     {
       img: item3c,
-      title: "Black Sound",
+      title: "Oil Opaque",
       subtitle: "Sarah Ojunnwa, Nairobi Kenya",
       description: "2014. Oil linen canvas",
       description1: "200 x 350. Sounds (Album)",
@@ -138,7 +147,7 @@ const ProductsPage = () => {
     },
     {
       img: item3d,
-      title: "Black Sound",
+      title: "Flat Orange",
       subtitle: "Sarah Ojunnwa, Nairobi Kenya",
       description: "2014. Oil linen canvas",
       description1: "200 x 350. Sounds (Album)",

@@ -35,6 +35,7 @@ import item2a from "../assets/images/item2a.png";
 import item2b from "../assets/images/item2b.png";
 import item2c from "../assets/images/item2c.png";
 import item2d from "../assets/images/item2d.png";
+import item2e from "../assets/images/item2e.png";
 import item3a from "../assets/images/item3a.png";
 import item3b from "../assets/images/item3b.png";
 import item3c from "../assets/images/item3c.png";
@@ -78,6 +79,7 @@ export {
   item2b,
   item2c,
   item2d,
+  item2e,
   item3a,
   item3b,
   item3c,

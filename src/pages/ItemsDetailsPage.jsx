@@ -1,12 +1,33 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { FaAngleDown } from "react-icons/fa";
 import { footerCountryUK } from "../assets";
 import TransparentBtn from "../components/buttons/TransparentBtn";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 function ItemDetailsPage() {
   const location = useLocation();
   const { img } = location.state || { img: null };
+  const { addItemToCart } = useContext(CartContext);
+  const navigate = useNavigate(); // Create a navigate function
+
+  const item = {
+    img: img,
+    artist: "Oji",
+    medium: "Photography",
+    year: "2012",
+    album: "Heaven on Earth",
+    condition: "Excellent",
+    size: "100 cm x 70 cm",
+    price: 2000,
+    currency: "EUR",
+  };
+
+  const handleAddToCart = () => {
+    addItemToCart(item);
+    navigate("/cart"); // Navigate to the cart page
+  };
 
   return (
     <div className="w-full font-montserrat bg-white text-black">
@@ -36,12 +57,12 @@ function ItemDetailsPage() {
                     <strong>Size:</strong>
                   </div>
                   <div className="flex flex-col gap-3">
-                    <p>Oji</p>
-                    <p>Photography</p>
-                    <p>2012</p>
-                    <p>Heaven on earth</p>
-                    <p>Excellent</p>
-                    <p>100 cm x 70 cm</p>
+                    <p>{item.artist}</p>
+                    <p>{item.medium}</p>
+                    <p>{item.year}</p>
+                    <p>{item.album}</p>
+                    <p>{item.condition}</p>
+                    <p>{item.size}</p>
                   </div>
                 </div>
               </div>
@@ -56,16 +77,17 @@ function ItemDetailsPage() {
                   <FaAngleDown />
                 </div>
                 <div className="py-3 flex items-center gap-2">
-                  <span className="font-semibold">EUR</span>
-                  <span>€ 2,000</span>
+                  <span className="font-semibold">{item.currency}</span>
+                  <span>€ {item.price}</span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-sm text-gray-500">Free Shipping</span>
                 </div>
                 <div className="mt-5 flex gap-8 flex-col lgss:flex-row">
-                  <Link to={"/cart"}>
-                  <TransparentBtn className btnText={"Add to cart"} />
-                  </Link>
+                  <TransparentBtn
+                    btnText={"Add to cart"}
+                    onClick={handleAddToCart}
+                  />
                   <TransparentBtn btnText={"Invest"} />
                 </div>
                 <div className="mt-7 flex flex-col md:flex-row gap-8 w-full lgss:flex-row justify-between lgss:pr-[20%]">
