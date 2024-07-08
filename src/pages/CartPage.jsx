@@ -103,7 +103,7 @@ function CartPage() {
           </div>
         </div>
         <div className="flex justify-center lgss:justify-end mt-12 lgss:pt-12">
-          <Link to={"/checkout"}>
+          <Link>
             <button className="bg-black text-white px-16 lgss:px-6 py-3 lgss: w-full rounded-full">
               PROCEED TO CHECKOUT
             </button>
