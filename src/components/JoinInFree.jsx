@@ -5,18 +5,22 @@ import HeaderText from "./textComponents/HeaderText";
 const headerTexts = [
   {
     subtitle: "An open art platform",
+    subtext:
+      "An open platform for art-lovers, artists, galleries, collectors, art universities and anyone who is involved in the art world in some way. ",
     description:
-      "Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art. Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art. Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art. Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art.",
+      "Create your own profile, make connections, followers, post on your wall and much more.",
   },
   {
-    subtitle: "An open art platform",
-    description:
-      "Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art. Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art. Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art. Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art.",
+    subtitle: "A Theme-Based Social Network",
+    subtext:
+      "Imagine a LinkedIn for art, as social as Facebook, plus a marketplace and plenty of entertaining and informative content.",
+    description: "Served from Germany. Popular worldwide.",
   },
   {
-    subtitle: "An open art platform",
+    subtitle: "Connecting The Art World",
+    subtext: "Connecting The Art World",
     description:
-      "Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art. Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art. Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art. Connecting African Art Enthusiasts Across the Continent: Invest in the Future of African Art.",
+      "Art-Lovers, Artists, Galleries and Universities from all countries ... worldwide.",
   },
 ];
 
@@ -31,6 +35,7 @@ function JoinInFree() {
             title={header.title}
             className={"text-white"}
             subtitle={header.subtitle}
+            subtext={header.subtext}
             description={header.description}
           />
         ))}

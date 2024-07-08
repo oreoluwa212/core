@@ -10,7 +10,7 @@ function ItemDetailsPage() {
   const location = useLocation();
   const { img } = location.state || { img: null };
   const { addItemToCart } = useContext(CartContext);
-  const navigate = useNavigate(); // Create a navigate function
+  const navigate = useNavigate();
 
   const item = {
     img: img,
@@ -26,7 +26,7 @@ function ItemDetailsPage() {
 
   const handleAddToCart = () => {
     addItemToCart(item);
-    navigate("/cart"); // Navigate to the cart page
+    navigate("/cart");
   };
 
   return (

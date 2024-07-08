@@ -56,12 +56,8 @@ const Hero = () => {
             </h2>
             <p className="lgss:text-sm font-extralight">
               Connecting African Art Enthusiasts Across the Continent: Invest in
-              the Future of African Art.Connecting African Art Enthusiasts
-              Across the Continent: Invest in the Future of African
-              Art.Connecting African Art Enthusiasts Across the Continent:
-              Invest in the Future of African Art.Connecting African Art
-              Enthusiasts Across the Continent: Invest in the Future of African
-              Art.
+              the Future of African Art. For Africans to express their deep
+              desires of Art.
             </p>
             <div className="pt-4 flex lgss:flex-row flex-col gap-5 items-center">
               <SimpleBtn className={"px-[32px] flex gap-2"}>
