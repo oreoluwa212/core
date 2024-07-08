@@ -103,7 +103,7 @@ const LatestArtCarousel = () => {
 
       <div className="w-full flex my-5 justify-center items-center">
         <Link to={"/galleries/products"}>
-          <button className="px-8 py-2 border border-white text-white rounded-[32px]">
+          <button className="px-8 py-2 border border-white text-white hover:bg-black rounded-[32px]">
             See more
           </button>
         </Link>

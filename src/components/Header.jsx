@@ -42,7 +42,7 @@ const Header = () => {
           <PiShoppingCartSimpleFill className="text-2xl" />
         </Link>
         <SimpleBtn className={"px-[32px]"}>Log In</SimpleBtn>
-        <SimpleBtn className={"px-[32px] border-white border"}>
+        <SimpleBtn className={"px-[32px] hover:bg-white hover:text-black hover:font-semibold border-white border"}>
           Sign Up
         </SimpleBtn>
       </div>
