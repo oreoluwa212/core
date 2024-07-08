@@ -22,7 +22,7 @@ import {
 } from "../assets";
 import ProductSlider from "../components/cards/products/ProductSlider";
 import { FaAngleDown } from "react-icons/fa";
-import ProductText from "../components/textComponents/ProductText";
+import ProductCard from "../components/cards/products/ProductCard";
 import { useNavigate } from "react-router-dom";
 
 const products = [
@@ -41,6 +41,111 @@ const ProductsPage = () => {
     navigate("/galleries/products/item-details", { state: { img } });
   };
 
+  const productDetails1 = [
+    {
+      img: item1a,
+      title: "Black Sound",
+      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
+      description: "2014. Oil linen canvas",
+      description1: "200 x 350. Sounds (Album)",
+      price: 2000,
+    },
+    {
+      img: item1b,
+      title: "Black Sound",
+      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
+      description: "2014. Oil linen canvas",
+      description1: "200 x 350. Sounds (Album)",
+      price: 2000,
+    },
+    {
+      img: item1c,
+      title: "Black Sound",
+      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
+      description: "2014. Oil linen canvas",
+      description1: "200 x 350. Sounds (Album)",
+      price: 2000,
+    },
+    {
+      img: item1d,
+      title: "Black Sound",
+      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
+      description: "2014. Oil linen canvas",
+      description1: "200 x 350. Sounds (Album)",
+      price: 2000,
+    },
+  ];
+
+  const productDetails2 = [
+    {
+      img: item2a,
+      title: "Black Sound",
+      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
+      description: "2014. Oil linen canvas",
+      description1: "200 x 350. Sounds (Album)",
+      price: 2000,
+    },
+    {
+      img: item2b,
+      title: "Black Sound",
+      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
+      description: "2014. Oil linen canvas",
+      description1: "200 x 350. Sounds (Album)",
+      price: 2000,
+    },
+    {
+      img: item2c,
+      title: "Black Sound",
+      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
+      description: "2014. Oil linen canvas",
+      description1: "200 x 350. Sounds (Album)",
+      price: 2000,
+    },
+    {
+      img: item2d,
+      title: "Black Sound",
+      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
+      description: "2014. Oil linen canvas",
+      description1: "200 x 350. Sounds (Album)",
+      price: 2000,
+    },
+  ];
+
+  const productDetails3 = [
+    {
+      img: item3a,
+      title: "Black Sound",
+      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
+      description: "2014. Oil linen canvas",
+      description1: "200 x 350. Sounds (Album)",
+      price: 2000,
+    },
+    {
+      img: item3b,
+      title: "Black Sound",
+      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
+      description: "2014. Oil linen canvas",
+      description1: "200 x 350. Sounds (Album)",
+      price: 2000,
+    },
+    {
+      img: item3c,
+      title: "Black Sound",
+      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
+      description: "2014. Oil linen canvas",
+      description1: "200 x 350. Sounds (Album)",
+      price: 2000,
+    },
+    {
+      img: item3d,
+      title: "Black Sound",
+      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
+      description: "2014. Oil linen canvas",
+      description1: "200 x 350. Sounds (Album)",
+      price: 2000,
+    },
+  ];
+
   return (
     <div className="w-full font-montserrat bg-white text-black">
       <Header />
@@ -51,7 +156,7 @@ const ProductsPage = () => {
         />
         <div className="w-full px-[15%] lgss:px-0">
           <ProductSlider products={products} />
-          </div>
+        </div>
         <div className="w-full px-[5%] lgss:px-0">
           <div className="w-full flex flex-col pt-7">
             <div className="w-full lgss:px-5 lgss:h-[80px] h-fit lgss:py-0 py-4 flex lgss:flex-row flex-col gap-2 justify-between">
@@ -113,1289 +218,238 @@ const ProductsPage = () => {
             </div>
             <div className="w-full lgss:px-12 pb-4">
               {activeScreen === 1 ? (
-                <>
-                  <div className="flex lgss:flex-row flex-col w-full gap-5">
-                    <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
+                <div className="flex w-full flex-col lgss:flex-row gap-5">
+                  <div className="flex flex-col lgss:w-1/3 w-full">
+                    {productDetails1.map((product, index) => (
                       <div
-                        className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
-                        onClick={() => handleImageClick(item1a)}
+                        key={index}
+                        className="flex flex-col gap-10 w-full pb-10 items-center"
                       >
-                        <div className="w-full">
-                          <img
-                            src={item1a}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
+                        <ProductCard
+                          img={product.img}
+                          title={product.title}
+                          subtitle={product.subtitle}
+                          description={product.description}
+                          description1={product.description1}
+                          price={product.price}
+                          onClick={() => handleImageClick(product.img)}
+                        />
                       </div>
-                      <div
-                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
-                        onClick={() => handleImageClick(item1b)}
-                      >
-                        <div className="w-full">
-                          <img
-                            src={item1b}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
-                        onClick={() => handleImageClick(item1c)}
-                      >
-                        <div className="w-full">
-                          <img
-                            src={item1c}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
-                        onClick={() => handleImageClick(item1d)}
-                      >
-                        <div className="w-full">
-                          <img
-                            src={item1d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div
-                        className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
-                        onClick={() => handleImageClick(item2a)}
-                      >
-                        <div className="w-full">
-                          <img
-                            src={item2a}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
-                        onClick={() => handleImageClick(item2b)}
-                      >
-                        <div className="w-full">
-                          <img
-                            src={item2b}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
-                        onClick={() => handleImageClick(item2d)}
-                      >
-                        <div className="w-full">
-                          <img
-                            src={item2d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
-                        onClick={() => handleImageClick(item2c)}
-                      >
-                        <div className="w-full">
-                          <img
-                            src={item2c}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
-                        onClick={() => handleImageClick(item2d)}
-                      >
-                        <div className="w-full">
-                          <img
-                            src={item2d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div
-                        className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
-                        onClick={() => handleImageClick(item3a)}
-                      >
-                        <div className="w-full">
-                          <img
-                            src={item3a}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
-                        onClick={() => handleImageClick(item3b)}
-                      >
-                        <div className="w-full">
-                          <img
-                            src={item3b}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
-                        onClick={() => handleImageClick(item3c)}
-                      >
-                        <div className="w-full">
-                          <img
-                            src={item3c}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
-                        onClick={() => handleImageClick(item3d)}
-                      >
-                        <div className="w-full">
-                          <img
-                            src={item3d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    ))}
                   </div>
-                </>
+                  <div className="flex flex-col lgss:w-1/3 w-full">
+                    {productDetails2.map((product, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col gap-10 w-full pb-10 items-center"
+                      >
+                        <ProductCard
+                          img={product.img}
+                          title={product.title}
+                          subtitle={product.subtitle}
+                          description={product.description}
+                          description1={product.description1}
+                          price={product.price}
+                          onClick={() => handleImageClick(product.img)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col lgss:w-1/3 w-full">
+                    {productDetails3.map((product, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col gap-10 w-full pb-10 items-center"
+                      >
+                        <ProductCard
+                          img={product.img}
+                          title={product.title}
+                          subtitle={product.subtitle}
+                          description={product.description}
+                          description1={product.description1}
+                          price={product.price}
+                          onClick={() => handleImageClick(product.img)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               ) : activeScreen === 2 ? (
-                <>
-                  <div className="flex lgss:flex-row flex-col w-full gap-5">
-                    <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item3a}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
+                <div className="flex w-full flex-col lgss:flex-row gap-5">
+                  <div className="flex flex-col lgss:w-1/3 w-full">
+                    {productDetails3.map((product, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col gap-10 w-full pb-10 items-center"
+                      >
+                        <ProductCard
+                          img={product.img}
+                          title={product.title}
+                          subtitle={product.subtitle}
+                          description={product.description}
+                          description1={product.description1}
+                          price={product.price}
+                          onClick={() => handleImageClick(product.img)}
+                        />
                       </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item3b}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item3c}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item3d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2a}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2b}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2c}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item1a}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item1b}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item1c}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item1d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    ))}
                   </div>
-                </>
+
+                  <div className="flex flex-col lgss:w-1/3 w-full">
+                    {productDetails2.map((product, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col gap-10 w-full pb-10 items-center"
+                      >
+                        <ProductCard
+                          img={product.img}
+                          title={product.title}
+                          subtitle={product.subtitle}
+                          description={product.description}
+                          description1={product.description1}
+                          price={product.price}
+                          onClick={() => handleImageClick(product.img)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-col lgss:w-1/3 w-full">
+                    {productDetails1.map((product, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col gap-10 w-full pb-10 items-center"
+                      >
+                        <ProductCard
+                          img={product.img}
+                          title={product.title}
+                          subtitle={product.subtitle}
+                          description={product.description}
+                          description1={product.description1}
+                          price={product.price}
+                          onClick={() => handleImageClick(product.img)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               ) : activeScreen === 3 ? (
-                <>
-                  <div className="flex lgss:flex-row flex-col w-full gap-5">
-                    <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item1a}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
+                <div className="flex w-full flex-col lgss:flex-row gap-5">
+                  <div className="flex flex-col lgss:w-1/3 w-full">
+                    {productDetails1.map((product, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col gap-10 w-full pb-10 items-center"
+                      >
+                        <ProductCard
+                          img={product.img}
+                          title={product.title}
+                          subtitle={product.subtitle}
+                          description={product.description}
+                          description1={product.description1}
+                          price={product.price}
+                          onClick={() => handleImageClick(product.img)}
+                        />
                       </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item1b}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item1c}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item1d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2a}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2b}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2c}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item3a}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item3b}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item3c}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item3d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    ))}
                   </div>
-                </>
-              ) : activeScreen === 4 ? (
-                <>
-                  <div className="flex lgss:flex-row flex-col w-full gap-5">
-                    <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item3a}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
+                  <div className="flex flex-col lgss:w-1/3 w-full">
+                    {productDetails2.map((product, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col gap-10 w-full pb-10 items-center"
+                      >
+                        <ProductCard
+                          img={product.img}
+                          title={product.title}
+                          subtitle={product.subtitle}
+                          description={product.description}
+                          description1={product.description1}
+                          price={product.price}
+                          onClick={() => handleImageClick(product.img)}
+                        />
                       </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item3b}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item3c}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item3d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2a}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2b}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2c}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item2d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col gap-10 lgss:w-1/3 w-full pb-10 items-center">
-                      <div className="lgss:w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item1a}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item1b}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item1c}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[95%] bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40">
-                        <div className="w-full">
-                          <img
-                            src={item1d}
-                            className="w-full rounded-t-[8px] h-auto"
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col pl-7 py-4">
-                          <ProductText
-                            title={"Black Sound"}
-                            subtitle={"Sarah Ojunnwa, Nairobi Kenya"}
-                            description={"2014. Oil linen canvas"}
-                            description1={"200 x 350. Sounds (Album)"}
-                          />
-                          <div className="flex gap-2 font-medium text-lg items-center pb-3 pt-5">
-                            <p className="border p-2 border-black border-opacity-25">
-                              EUR
-                            </p>
-                            <p>€ 2,000</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    ))}
                   </div>
-                </>
-              ) : null}
+                  <div className="flex flex-col lgss:w-1/3 w-full">
+                    {productDetails3.map((product, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col gap-10 w-full pb-10 items-center"
+                      >
+                        <ProductCard
+                          img={product.img}
+                          title={product.title}
+                          subtitle={product.subtitle}
+                          description={product.description}
+                          description1={product.description1}
+                          price={product.price}
+                          onClick={() => handleImageClick(product.img)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="flex w-full flex-col lgss:flex-row gap-5">
+                  <div className="flex flex-col lgss:w-1/3 w-full">
+                    {productDetails3.map((product, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col gap-10 w-full pb-10 items-center"
+                      >
+                        <ProductCard
+                          img={product.img}
+                          title={product.title}
+                          subtitle={product.subtitle}
+                          description={product.description}
+                          description1={product.description1}
+                          price={product.price}
+                          onClick={() => handleImageClick(product.img)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-col lgss:w-1/3 w-full">
+                    {productDetails2.map((product, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col gap-10 w-full pb-10 items-center"
+                      >
+                        <ProductCard
+                          img={product.img}
+                          title={product.title}
+                          subtitle={product.subtitle}
+                          description={product.description}
+                          description1={product.description1}
+                          price={product.price}
+                          onClick={() => handleImageClick(product.img)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-col lgss:w-1/3 w-full">
+                    {productDetails1.map((product, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col gap-10 w-full pb-10 items-center"
+                      >
+                        <ProductCard
+                          img={product.img}
+                          title={product.title}
+                          subtitle={product.subtitle}
+                          description={product.description}
+                          description1={product.description1}
+                          price={product.price}
+                          onClick={() => handleImageClick(product.img)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import { FaAngleDown } from "react-icons/fa";
 import { footerCountryUK } from "../assets";
@@ -63,7 +63,9 @@ function ItemDetailsPage() {
                   <span className="text-sm text-gray-500">Free Shipping</span>
                 </div>
                 <div className="mt-5 flex gap-8 flex-col lgss:flex-row">
-                  <TransparentBtn btnText={"Add to cart"} />
+                  <Link to={"/cart"}>
+                  <TransparentBtn className btnText={"Add to cart"} />
+                  </Link>
                   <TransparentBtn btnText={"Invest"} />
                 </div>
                 <div className="mt-7 flex flex-col md:flex-row gap-8 w-full lgss:flex-row justify-between lgss:pr-[20%]">
