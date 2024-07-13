@@ -5,14 +5,8 @@ import ProductSlider from "../components/cards/products/ProductSlider";
 import { FaAngleDown, FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import ProductCard from "../components/cards/products/ProductCard";
 import { useNavigate } from "react-router-dom";
-import {
-  product1,
-  product2,
-  product3,
-  product4,
-  footerCountryUK,
-} from "../assets";
 import SkeletonLoader from "../components/cards/products/SkeletonLoader";
+import { footerCountryUK, product1, product2, product3, product4 } from "../assets";
 
 const products = [
   { img: product1, text: "Digital Art" },
@@ -20,7 +14,7 @@ const products = [
   { img: product3, text: "Plaster" },
   { img: product4, text: "Photography" },
   { img: product2, text: "Ceramic" },
-  { img: product4, text: "Fumage" },
+  { img: product3, text: "Fumage" },
 ];
 
 const ProductsPage = () => {
@@ -35,62 +29,55 @@ const ProductsPage = () => {
     navigate("/galleries/products/item-details", { state: { img } });
   };
 
-useEffect(() => {
-  const fetchProducts = async () => {
-    try {
-      const response = await fetch(import.meta.env.VITE_API_URL);
-      const data = await response.json();
-      // console.log("API Response:", data);
-      const formattedData = data.items.map((item) => {
-        let price = "Price not available";
-        if (item.selling_price) {
-          price = `₦${item.selling_price}`;
-        } else if (item.current_price && item.current_price.length > 0) {
-          const currencyPrice = item.current_price[0];
-          const [currency, value] = Object.entries(currencyPrice)[0];
-          price = `${currency} ${value[0]}`;
-        }
-        return {
-          img: item.photos[0]
-            ? `https://api.timbu.cloud/images/${item.photos[0].url}`
-            : "default-image-url",
-          title: item.name,
-          subtitle: item.description || "No description available",
-          description: item.description || "No description available",
-          description1: item.description || "No description available",
-          price: price,
-        };
-      });
-      // console.log("Formatted Data:", formattedData);
-      setProductDetails(formattedData);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(import.meta.env.VITE_API_URL);
+        const data = await response.json();
+        const formattedData = data.items.map((item) => {
+          let price = "Price not available";
+          if (item.selling_price) {
+            price = `₦${item.selling_price}`;
+          } else if (item.current_price && item.current_price.length > 0) {
+            const currencyPrice = item.current_price[0];
+            const [currency, value] = Object.entries(currencyPrice)[0];
+            price = `${currency} ${value[0]}`;
+          }
 
-  fetchProducts();
-}, []);
+          return {
+            img: item.photos[0]
+              ? `https://api.timbu.cloud/images/${item.photos[0].url}`
+              : "default-image-url",
+            title: item.name,
+            subtitle: item.description || "No description available",
+            description: item.description || "No description available",
+            category: item.categories[0]?.name.toLowerCase() || "uncategorized",
+            price: price,
+          };
+        });
+        setProductDetails(formattedData);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchProducts();
+  }, []);
 
   const getFilteredProducts = () => {
     switch (activeScreen) {
       case 2:
         return productDetails.filter(
-          (product) =>
-            product.category && product.category.toLowerCase() === "physical"
+          (product) => product.category === "photography"
         );
       case 3:
         return productDetails.filter(
-          (product) =>
-            product.category && product.category.toLowerCase() === "digital"
+          (product) => product.category === "digital"
         );
       case 4:
-        return productDetails.filter(
-          (product) =>
-            product.category && product.category.toLowerCase() === "nft"
-        );
+        return productDetails.filter((product) => product.category === "nfts");
       default:
         return productDetails;
     }
@@ -274,9 +261,9 @@ useEffect(() => {
                       />
                     ))}
               </div>
-            </div>
-            <div className="w-full flex justify-center mt-6">
-              {renderPageNumbers()}
+              <div className="flex justify-center py-5">
+                {renderPageNumbers()}
+              </div>
             </div>
           </div>
         </div>
