@@ -49,8 +49,9 @@ const ProductsPage = () => {
               ? `https://api.timbu.cloud/images/${item.photos[0].url}`
               : "default-image-url",
             title: item.name,
-            subtitle: item.description || "No description available",
-            description: item.description || "No description available",
+            subtitle: item.description || "Sarah Ojunwa. Nigeria",
+            description: item.description || "2014. Oil linen canvas",
+            description1: item.description || "200 x 350. Sounds (Album)",
             category: item.categories[0]?.name.toLowerCase() || "uncategorized",
             price: price,
           };
@@ -256,6 +257,7 @@ const ProductsPage = () => {
                         title={product.title}
                         subtitle={product.subtitle}
                         description={product.description}
+                        description1={product.description1}
                         price={product.price}
                         onClick={() => handleImageClick(product.img)}
                       />
