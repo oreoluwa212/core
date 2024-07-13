@@ -40,7 +40,7 @@ useEffect(() => {
     try {
       const response = await fetch(import.meta.env.VITE_API_URL);
       const data = await response.json();
-      console.log("API Response:", data); // Log the entire API response for debugging
+      // console.log("API Response:", data);
       const formattedData = data.items.map((item) => {
         let price = "Price not available";
         if (item.selling_price) {
@@ -61,7 +61,7 @@ useEffect(() => {
           price: price,
         };
       });
-      console.log("Formatted Data:", formattedData); // Log the formatted data for debugging
+      // console.log("Formatted Data:", formattedData);
       setProductDetails(formattedData);
     } catch (error) {
       console.error("Error fetching products:", error);
