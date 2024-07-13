@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { CartContext } from "../context/CartContext";
+import Modal from "../components/modals/Modal";
 
 const ProgressIndicator = () => {
   return (
@@ -26,9 +29,48 @@ const ProgressIndicator = () => {
   );
 };
 
-const ShippingAddressForm = () => {
+const ShippingAddressForm = ({ onSubmit }) => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    streetAddress: "",
+    country: "",
+    state: "",
+    city: "",
+    postalCode: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.firstName) newErrors.firstName = "First name is required";
+    if (!formData.lastName) newErrors.lastName = "Last name is required";
+    if (!formData.streetAddress)
+      newErrors.streetAddress = "Street address is required";
+    if (!formData.country) newErrors.country = "Country is required";
+    if (!formData.state) newErrors.state = "State/Province is required";
+    if (!formData.postalCode)
+      newErrors.postalCode = "Zip/Postal code is required";
+    return newErrors;
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = validate();
+    if (Object.keys(newErrors).length === 0) {
+      onSubmit();
+    } else {
+      setErrors(newErrors);
+    }
+  };
+
   return (
-    <form className="space-y-4">
+    <form className="space-y-4" onSubmit={handleSubmit}>
       <div className="flex space-x-4">
         <div className="flex-1">
           <label className="block text-sm font-medium">
@@ -36,8 +78,16 @@ const ShippingAddressForm = () => {
           </label>
           <input
             type="text"
-            className="w-full border border-gray-300 rounded-md p-2"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            className={`w-full border ${
+              errors.firstName ? "border-red-500" : "border-gray-300"
+            } rounded-md p-2 focus:outline-none focus:border-black`}
           />
+          {errors.firstName && (
+            <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>
+          )}
         </div>
         <div className="flex-1">
           <label className="block text-sm font-medium">
@@ -45,16 +95,32 @@ const ShippingAddressForm = () => {
           </label>
           <input
             type="text"
-            className="w-full border border-gray-300 rounded-md p-2"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            className={`w-full border ${
+              errors.lastName ? "border-red-500" : "border-gray-300"
+            } rounded-md p-2 focus:outline-none focus:border-black`}
           />
+          {errors.lastName && (
+            <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
+          )}
         </div>
       </div>
       <div>
         <label className="block text-sm font-medium">Street Address</label>
         <input
           type="text"
-          className="w-full border border-gray-300 rounded-md p-2"
+          name="streetAddress"
+          value={formData.streetAddress}
+          onChange={handleChange}
+          className={`w-full border ${
+            errors.streetAddress ? "border-red-500" : "border-gray-300"
+          } rounded-md p-2 focus:outline-none focus:border-black`}
         />
+        {errors.streetAddress && (
+          <p className="text-red-500 text-xs mt-1">{errors.streetAddress}</p>
+        )}
       </div>
       <div>
         <label className="block text-sm font-medium">
@@ -62,8 +128,16 @@ const ShippingAddressForm = () => {
         </label>
         <input
           type="text"
-          className="w-full border border-gray-300 rounded-md p-2"
+          name="country"
+          value={formData.country}
+          onChange={handleChange}
+          className={`w-full border ${
+            errors.country ? "border-red-500" : "border-gray-300"
+          } rounded-md p-2 focus:outline-none focus:border-black`}
         />
+        {errors.country && (
+          <p className="text-red-500 text-xs mt-1">{errors.country}</p>
+        )}
       </div>
       <div className="flex space-x-4">
         <div className="flex-1">
@@ -72,14 +146,25 @@ const ShippingAddressForm = () => {
           </label>
           <input
             type="text"
-            className="w-full border border-gray-300 rounded-md p-2"
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+            className={`w-full border ${
+              errors.state ? "border-red-500" : "border-gray-300"
+            } rounded-md p-2 focus:outline-none focus:border-black`}
           />
+          {errors.state && (
+            <p className="text-red-500 text-xs mt-1">{errors.state}</p>
+          )}
         </div>
         <div className="flex-1">
           <label className="block text-sm font-medium">City</label>
           <input
             type="text"
-            className="w-full border border-gray-300 rounded-md p-2"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-black"
           />
         </div>
       </div>
@@ -89,8 +174,16 @@ const ShippingAddressForm = () => {
         </label>
         <input
           type="text"
-          className="w-full border border-gray-300 rounded-md p-2"
+          name="postalCode"
+          value={formData.postalCode}
+          onChange={handleChange}
+          className={`w-full border ${
+            errors.postalCode ? "border-red-500" : "border-gray-300"
+          } rounded-md p-2 focus:outline-none focus:border-black`}
         />
+        {errors.postalCode && (
+          <p className="text-red-500 text-xs mt-1">{errors.postalCode}</p>
+        )}
       </div>
       <button
         type="submit"
@@ -103,32 +196,78 @@ const ShippingAddressForm = () => {
 };
 
 const OrderSummary = () => {
+  const { cartItems } = useContext(CartContext);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleAccordion = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="bg-gray-100 p-4 rounded-md shadow-sm">
       <h3 className="font-semibold text-lg mb-2">Order Summary</h3>
-      <div className="flex w-full justify-between items-center">
-        <p className="my-2">1 item in cart</p>
-        <FaAngleDown />
+      <div
+        className="flex w-full justify-between items-center cursor-pointer"
+        onClick={toggleAccordion}
+      >
+        <p className="my-2">{cartItems.length} item(s) in cart</p>
+        {isOpen ? <FaAngleUp /> : <FaAngleDown />}
       </div>
-      <hr />
+      {isOpen && (
+        <div>
+          <hr />
+          {cartItems.map((item, index) => (
+            <div key={index} className="flex justify-between my-2">
+              <p>{item.name}</p>
+              <p>{item.quantity}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
 const ShipmentInfo = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleAccordion = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="bg-gray-100 p-4 rounded-md shadow-sm mt-4">
       <h3 className="font-semibold text-lg mb-2">Shipment Info</h3>
-      <div className="flex w-full justify-between items-center">
+      <div
+        className="flex w-full justify-between items-center cursor-pointer"
+        onClick={toggleAccordion}
+      >
         <p className="my-2">Product prices including shipping</p>
-        <FaAngleDown />
+        {isOpen ? <FaAngleUp /> : <FaAngleDown />}
       </div>
-      <hr />
+      {isOpen && (
+        <div>
+          <hr />
+          {/* You can add shipment details here */}
+        </div>
+      )}
     </div>
   );
 };
 
 const CheckoutPage = () => {
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
+  const handleFormSubmit = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    navigate("/");
+  };
+
   return (
     <div className="w-full font-montserrat bg-white text-black">
       <Header />
@@ -137,7 +276,7 @@ const CheckoutPage = () => {
         <div className="mt-8 px-[5%] lgss:px-0 flex lgss:flex-row flex-col justify-between w-full">
           <div className="flex flex-col lgss:w-[45%]">
             <h2 className="text-2xl font-semibold mb-4">Shipping Address</h2>
-            <ShippingAddressForm />
+            <ShippingAddressForm onSubmit={handleFormSubmit} />
           </div>
           <div className="lgss:w-1/3 mt-8 py-6 space-y-10">
             <OrderSummary />
@@ -145,6 +284,7 @@ const CheckoutPage = () => {
           </div>
         </div>
       </div>
+      <Modal showModal={showModal} onClose={handleCloseModal} />
     </div>
   );
 };
