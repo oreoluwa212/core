@@ -29,7 +29,10 @@ function SkeletonLoader() {
 
 function ItemDetailsPage() {
   const location = useLocation();
-  const { id } = location.state || { id: null };
+  const { id, price: passedPrice } = location.state || {
+    id: null,
+    price: null,
+  };
   const { addItemToCart } = useContext(CartContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -66,11 +69,12 @@ function ItemDetailsPage() {
           condition:
             data.extra_infos.find((info) => info.key === "Condition")?.value ||
             "Unknown",
-          size: data.size || "Unknown",
+          size:
+            data.extra_infos.find((info) => info.key === "Size")?.value ||
+            "Unknown",
           price: data.selling_price
             ? `₦${data.selling_price}`
-            : "Price not available",
-          currency: "EUR",
+            : passedPrice || "Price not available",
         };
         setItem(formattedItem);
       } catch (error) {
@@ -83,7 +87,7 @@ function ItemDetailsPage() {
     if (id) {
       fetchProductDetails();
     }
-  }, [id]);
+  }, [id, passedPrice]);
 
   const handleAddToCart = () => {
     addItemToCart(item);
