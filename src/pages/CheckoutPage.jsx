@@ -7,9 +7,9 @@ import Modal from "../components/modals/Modal";
 
 const ProgressIndicator = () => {
   return (
-    <div className="flex justify-center items-center mt-8">
-      <div className="flex flc items-center">
-        <div className="w-10 h-10 border-black border text-black bg-gray-300 flex justify-center items-center rounded-full">
+    <div className="flex justify-center items-center mt-20 py-6 space-x-6">
+      <div className="flex items-center">
+        <div className="w-10 h-10 border border-black text-black bg-gray-300 flex justify-center items-center rounded-full">
           1
         </div>
         <div className="h-1 bg-gray-300 w-28"></div>
@@ -81,9 +81,8 @@ const ShippingAddressForm = ({ onSubmit }) => {
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
-            className={`w-full border ${
-              errors.firstName ? "border-red-500" : "border-gray-300"
-            } rounded-md p-2 focus:outline-none focus:border-black`}
+            className={`w-full border ${errors.firstName ? "border-red-500" : "border-gray-300"
+              } rounded-md p-2 focus:outline-none focus:border-black`}
           />
           {errors.firstName && (
             <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>
@@ -98,9 +97,8 @@ const ShippingAddressForm = ({ onSubmit }) => {
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
-            className={`w-full border ${
-              errors.lastName ? "border-red-500" : "border-gray-300"
-            } rounded-md p-2 focus:outline-none focus:border-black`}
+            className={`w-full border ${errors.lastName ? "border-red-500" : "border-gray-300"
+              } rounded-md p-2 focus:outline-none focus:border-black`}
           />
           {errors.lastName && (
             <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
@@ -114,9 +112,8 @@ const ShippingAddressForm = ({ onSubmit }) => {
           name="streetAddress"
           value={formData.streetAddress}
           onChange={handleChange}
-          className={`w-full border ${
-            errors.streetAddress ? "border-red-500" : "border-gray-300"
-          } rounded-md p-2 focus:outline-none focus:border-black`}
+          className={`w-full border ${errors.streetAddress ? "border-red-500" : "border-gray-300"
+            } rounded-md p-2 focus:outline-none focus:border-black`}
         />
         {errors.streetAddress && (
           <p className="text-red-500 text-xs mt-1">{errors.streetAddress}</p>
@@ -131,9 +128,8 @@ const ShippingAddressForm = ({ onSubmit }) => {
           name="country"
           value={formData.country}
           onChange={handleChange}
-          className={`w-full border ${
-            errors.country ? "border-red-500" : "border-gray-300"
-          } rounded-md p-2 focus:outline-none focus:border-black`}
+          className={`w-full border ${errors.country ? "border-red-500" : "border-gray-300"
+            } rounded-md p-2 focus:outline-none focus:border-black`}
         />
         {errors.country && (
           <p className="text-red-500 text-xs mt-1">{errors.country}</p>
@@ -149,9 +145,8 @@ const ShippingAddressForm = ({ onSubmit }) => {
             name="state"
             value={formData.state}
             onChange={handleChange}
-            className={`w-full border ${
-              errors.state ? "border-red-500" : "border-gray-300"
-            } rounded-md p-2 focus:outline-none focus:border-black`}
+            className={`w-full border ${errors.state ? "border-red-500" : "border-gray-300"
+              } rounded-md p-2 focus:outline-none focus:border-black`}
           />
           {errors.state && (
             <p className="text-red-500 text-xs mt-1">{errors.state}</p>
@@ -177,9 +172,8 @@ const ShippingAddressForm = ({ onSubmit }) => {
           name="postalCode"
           value={formData.postalCode}
           onChange={handleChange}
-          className={`w-full border ${
-            errors.postalCode ? "border-red-500" : "border-gray-300"
-          } rounded-md p-2 focus:outline-none focus:border-black`}
+          className={`w-full border ${errors.postalCode ? "border-red-500" : "border-gray-300"
+            } rounded-md p-2 focus:outline-none focus:border-black`}
         />
         {errors.postalCode && (
           <p className="text-red-500 text-xs mt-1">{errors.postalCode}</p>
@@ -187,7 +181,7 @@ const ShippingAddressForm = ({ onSubmit }) => {
       </div>
       <button
         type="submit"
-        className="w-full bg-black text-white py-2 rounded-full"
+        className="w-full bg-black text-white py-2 rounded-full hover:bg-gray-900 focus:outline-none focus:bg-gray-900"
       >
         Next
       </button>
@@ -215,11 +209,11 @@ const OrderSummary = () => {
       </div>
       {isOpen && (
         <div>
-          <hr />
+          <hr className="my-2" />
           {cartItems.map((item, index) => (
             <div key={index} className="flex justify-between my-2">
               <p>{item.name}</p>
-              <p>{item.quantity}</p>
+              <p>${item.price * item.quantity}</p> {/* Display calculated price */}
             </div>
           ))}
         </div>
@@ -227,6 +221,7 @@ const OrderSummary = () => {
     </div>
   );
 };
+
 
 const ShipmentInfo = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -238,16 +233,13 @@ const ShipmentInfo = () => {
   return (
     <div className="bg-gray-100 p-4 rounded-md shadow-sm mt-4">
       <h3 className="font-semibold text-lg mb-2">Shipment Info</h3>
-      <div
-        className="flex w-full justify-between items-center cursor-pointer"
-        onClick={toggleAccordion}
-      >
+      <div className="flex w-full justify-between items-center cursor-pointer" onClick={toggleAccordion}>
         <p className="my-2">Product prices including shipping</p>
         {isOpen ? <FaAngleUp /> : <FaAngleDown />}
       </div>
       {isOpen && (
         <div>
-          <hr />
+          <hr className="my-2" />
           {/* You can add shipment details here */}
         </div>
       )}
@@ -266,19 +258,20 @@ const CheckoutPage = () => {
   const handleCloseModal = () => {
     setShowModal(false);
     navigate("/");
+    CartContext.clearCart();
   };
 
   return (
     <div className="w-full font-montserrat bg-white text-black">
       <Header />
-      <div className="py-[5%] mt-16 w-full flex flex-col justify-between gap-16 lg:px-[5%]">
+      <div className="py-10 lg:px-10">
         <ProgressIndicator />
-        <div className="mt-8 px-[5%] lgss:px-0 flex lgss:flex-row flex-col justify-between w-full">
-          <div className="flex flex-col lgss:w-[45%]">
-            <h2 className="text-2xl font-semibold mb-4">Shipping Address</h2>
+        <div className="mt-8 grid lg:grid-cols-2 gap-8">
+          <div className="space-y-8">
+            <h2 className="text-2xl font-semibold">Shipping Address</h2>
             <ShippingAddressForm onSubmit={handleFormSubmit} />
           </div>
-          <div className="lgss:w-1/3 mt-8 py-6 space-y-10">
+          <div className="space-y-8">
             <OrderSummary />
             <ShipmentInfo />
           </div>

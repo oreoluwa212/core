@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import SimpleBtn from "./buttons/SimpleBtn";
@@ -8,11 +8,22 @@ import { CartContext } from "../context/CartContext";
 
 const Header = () => {
   const navigate = useNavigate();
+  const { getTotalItems, clearCart, cartItems } = useContext(CartContext);
+  const [dummyState, setDummyState] = useState(false); // Dummy state for force update
 
   const handleNavigation = (path, sectionId) => {
     navigate(path, { state: { sectionId } });
   };
-  const { getTotalItems } = useContext(CartContext);
+
+  const handleClearCart = () => {
+    clearCart();
+    setDummyState(!dummyState); // Toggle dummy state to force update
+  };
+
+  // Use useEffect to update dummy state when cart items change
+  useEffect(() => {
+    setDummyState(!dummyState);
+  }, [cartItems]);
 
   return (
     <header className="fixed top-0 left-0 w-full flex justify-between items-center py-6 px-[5%] bg-black text-white z-50">
@@ -49,7 +60,12 @@ const Header = () => {
           </div>
         </Link>
         <SimpleBtn className={"px-[32px]"}>Log In</SimpleBtn>
-        <SimpleBtn className={"px-[32px] hover:bg-white hover:text-black hover:font-semibold border-white border"}>
+        <SimpleBtn
+          onClick={handleClearCart}
+          className={
+            "px-[32px] hover:bg-white hover:text-black hover:font-semibold border-white border"
+          }
+        >
           Sign Up
         </SimpleBtn>
       </div>
