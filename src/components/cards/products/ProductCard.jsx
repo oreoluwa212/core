@@ -24,11 +24,11 @@ function ProductCard({
 
   return (
     <div
-      className="lgss:w-[95%] cursor-pointer bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40"
+      className="lgss:w-[95%] cursor-pointer bg-white h-fit rounded-[8px] shadow-sm border shadow-black/40 transition-transform transform hover:scale-105"
       onClick={onClick}
     >
-      <div className="w-full">
-        <img src={img} className="w-full rounded-t-[8px] h-auto" alt={title}/>
+      <div className="w-full h-[490px]">
+        <img src={img} className="w-full rounded-t-[8px] h-full" alt={title} />
       </div>
       <div className="flex flex-col pl-7 py-4">
         <ProductText

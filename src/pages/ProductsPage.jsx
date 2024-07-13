@@ -257,7 +257,7 @@ useEffect(() => {
               </a>
             </div>
             <div className="w-full lgss:px-12 pb-4">
-              <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
                 {loading
                   ? Array.from({ length: itemsPerPage }).map((_, index) => (
                       <SkeletonLoader key={index} />
