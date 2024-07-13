@@ -13,6 +13,7 @@ function ImgLoader() {
     </div>
   );
 }
+
 function SkeletonLoader() {
   return (
     <div className="animate-pulse">
@@ -28,28 +29,61 @@ function SkeletonLoader() {
 
 function ItemDetailsPage() {
   const location = useLocation();
-  const { img } = location.state || { img: null };
+  const { id } = location.state || { id: null };
   const { addItemToCart } = useContext(CartContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-
-  const item = {
-    img: img,
-    artist: "Oji",
-    medium: "Photography",
-    year: "2012",
-    album: "Heaven on Earth",
-    condition: "Excellent",
-    size: "100 cm x 70 cm",
-    price: 2000,
-    currency: "EUR",
-  };
+  const [item, setItem] = useState(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+    const fetchProductDetails = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/${id}?organization_id=${
+            import.meta.env.VITE_ORGANIZATION_ID
+          }&Appid=${import.meta.env.VITE_APP_ID}&Apikey=${
+            import.meta.env.VITE_API_KEY
+          }`
+        );
+        const data = await response.json();
+        const formattedItem = {
+          img:
+            data.photos.length > 0
+              ? `https://api.timbu.cloud/images/${data.photos[0].url}`
+              : "default-image-url",
+          artist:
+            data.extra_infos.find((info) => info.key === "Artist")?.value ||
+            "Unknown",
+          medium:
+            data.extra_infos.find((info) => info.key === "Medium")?.value ||
+            "Unknown",
+          year:
+            data.extra_infos.find((info) => info.key === "Year")?.value ||
+            "Unknown",
+          album:
+            data.extra_infos.find((info) => info.key === "Album")?.value ||
+            "Unknown",
+          condition:
+            data.extra_infos.find((info) => info.key === "Condition")?.value ||
+            "Unknown",
+          size: data.size || "Unknown",
+          price: data.selling_price
+            ? `₦${data.selling_price}`
+            : "Price not available",
+          currency: "EUR",
+        };
+        setItem(formattedItem);
+      } catch (error) {
+        console.error("Error fetching product details:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchProductDetails();
+    }
+  }, [id]);
 
   const handleAddToCart = () => {
     addItemToCart(item);
@@ -73,14 +107,18 @@ function ItemDetailsPage() {
             </div>
           </div>
         ) : (
-          img && (
+          item && (
             <div className="flex lgss:flex-row flex-col justify-center w-full lgss:justify-between pt-10 lgss:pt-0 lgss:px-0 px-5">
               <div className="w-[10%] hidden lgss:flex h-[100px]">
-                <img src={img} className="w-full rounded-lg h-full" alt="" />
+                <img
+                  src={item.img}
+                  className="w-full rounded-lg h-full"
+                  alt=""
+                />
               </div>
               <div className="lgss:w-[45%] h-[70vh]">
                 <img
-                  src={img}
+                  src={item.img}
                   alt="Selected Item"
                   className="w-full rounded-lg h-full"
                 />
@@ -118,7 +156,7 @@ function ItemDetailsPage() {
                   </div>
                   <div className="py-3 flex items-center gap-2">
                     <span className="font-semibold">{item.currency}</span>
-                    <span>€ {item.price}</span>
+                    <span>{item.price}</span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-sm text-gray-500">Free Shipping</span>

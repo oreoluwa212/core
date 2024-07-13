@@ -6,7 +6,13 @@ import { FaAngleDown, FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import ProductCard from "../components/cards/products/ProductCard";
 import { useNavigate } from "react-router-dom";
 import SkeletonLoader from "../components/cards/products/SkeletonLoader";
-import { footerCountryUK, product1, product2, product3, product4 } from "../assets";
+import {
+  footerCountryUK,
+  product1,
+  product2,
+  product3,
+  product4,
+} from "../assets";
 
 const products = [
   { img: product1, text: "Digital Art" },
@@ -25,8 +31,9 @@ const ProductsPage = () => {
   const itemsPerPage = 10;
   const navigate = useNavigate();
 
-  const handleImageClick = (img) => {
-    navigate("/galleries/products/item-details", { state: { img } });
+  const handleImageClick = (id) => {
+    console.log("Navigating to item details with ID:", id); // Debugging line
+    navigate("/galleries/products/item-details", { state: { id } });
   };
 
   useEffect(() => {
@@ -45,6 +52,7 @@ const ProductsPage = () => {
           }
 
           return {
+            id: item.id, // Ensure id is included
             img: item.photos[0]
               ? `https://api.timbu.cloud/images/${item.photos[0].url}`
               : "default-image-url",
@@ -246,28 +254,30 @@ const ProductsPage = () => {
             </div>
             <div className="w-full lgss:px-12 pb-4">
               <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-                {loading
-                  ? Array.from({ length: itemsPerPage }).map((_, index) => (
-                      <SkeletonLoader key={index} />
-                    ))
-                  : currentItems.map((product, index) => (
-                      <ProductCard
-                        key={index}
-                        img={product.img}
-                        title={product.title}
-                        subtitle={product.subtitle}
-                        description={product.description}
-                        description1={product.description1}
-                        price={product.price}
-                        onClick={() => handleImageClick(product.img)}
-                      />
-                    ))}
-              </div>
-              <div className="flex justify-center py-5">
-                {renderPageNumbers()}
+                {loading ? (
+                  <>
+                    <SkeletonLoader />
+                    <SkeletonLoader />
+                    <SkeletonLoader />
+                  </>
+                ) : (
+                  currentItems.map((product, index) => (
+                    <ProductCard
+                      key={index}
+                      img={product.img}
+                      title={product.title}
+                      subtitle={product.subtitle}
+                      description={product.description}
+                      description1={product.description1}
+                      price={product.price}
+                      onClick={() => handleImageClick(product.id)} // Updated to pass id
+                    />
+                  ))
+                )}
               </div>
             </div>
           </div>
+          <div className="flex justify-center py-4">{renderPageNumbers()}</div>
         </div>
       </div>
     </div>
