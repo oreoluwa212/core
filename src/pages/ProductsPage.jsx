@@ -31,9 +31,10 @@ const ProductsPage = () => {
   const itemsPerPage = 10;
   const navigate = useNavigate();
 
-  const handleImageClick = (id) => {
-    console.log("Navigating to item details with ID:", id); // Debugging line
-    navigate("/galleries/products/item-details", { state: { id } });
+  const handleImageClick = (id, price) => {
+    console.log("Navigating to item details with ID:", id);
+    console.log("Navigating to item details with price:", price);
+    navigate("/galleries/products/item-details", { state: { id, price } });
   };
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const ProductsPage = () => {
           }
 
           return {
-            id: item.id, // Ensure id is included
+            id: item.id,
             img: item.photos[0]
               ? `https://api.timbu.cloud/images/${item.photos[0].url}`
               : "default-image-url",
@@ -270,7 +271,9 @@ const ProductsPage = () => {
                       description={product.description}
                       description1={product.description1}
                       price={product.price}
-                      onClick={() => handleImageClick(product.id)} // Updated to pass id
+                      onClick={() =>
+                      handleImageClick(product.id, product.price)
+                      }
                     />
                   ))
                 )}

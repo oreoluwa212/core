@@ -49,13 +49,13 @@ function CartPage() {
                         </button>
                       </div>
                     </td>
-                    <td className="px-6 text-left">€ {item.price}</td>
+                    <td className="px-6 text-left">{item.price}</td>
                     <td className="px-6 text-left">
                       <div className="flex items-center">
                         <span>1</span>
                       </div>
                     </td>
-                    <td className="px-6 text-left">€ {item.price}</td>
+                    <td className="px-6 text-left">{item.price}</td>
                   </tr>
                 ))}
               </tbody>
@@ -117,7 +117,7 @@ function CartPage() {
                   </div>
                   <div className="flex justify-between mb-4">
                     <span className="font-medium">Price:</span>
-                    <span>€ {item.price}</span>
+                    <span>{item.price}</span>
                   </div>
                   <div className="flex justify-between mb-4">
                     <span className="font-medium">Quantity:</span>
@@ -127,7 +127,7 @@ function CartPage() {
                   </div>
                   <div className="hidden lgss:flex justify-between">
                     <span className="font-medium">Total:</span>
-                    <span>€ {item.price}</span>
+                    <span>{item.price}</span>
                   </div>
                 </div>
               ))
