@@ -6,13 +6,7 @@ import { FaAngleDown, FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import ProductCard from "../components/cards/products/ProductCard";
 import { useNavigate } from "react-router-dom";
 import SkeletonLoader from "../components/cards/products/SkeletonLoader";
-import {
-  footerCountryUK,
-  product1,
-  product2,
-  product3,
-  product4,
-} from "../assets";
+import { footerCountryUK, product1, product2, product3, product4 } from "../assets";
 
 const products = [
   { img: product1, text: "Digital Art" },
@@ -31,7 +25,7 @@ const ProductsPage = () => {
   const itemsPerPage = 10;
   const navigate = useNavigate();
 
-  const handleImageClick = (id, price) => {
+  const handleImageClick = (id, price, title) => {
     console.log("Navigating to item details with ID:", id);
     console.log("Navigating to item details with price:", price);
     navigate("/galleries/products/item-details", { state: { id, price } });
@@ -52,17 +46,20 @@ const ProductsPage = () => {
             price = `${currency} ${value[0]}`;
           }
 
+          const [subtitle, description, description1] = (item.description || "").split("\r\n");
+
           return {
             id: item.id,
             img: item.photos[0]
               ? `https://api.timbu.cloud/images/${item.photos[0].url}`
               : "default-image-url",
             title: item.name,
-            subtitle: item.description || "Sarah Ojunwa. Nigeria",
-            description: item.description || "2014. Oil linen canvas",
-            description1: item.description || "200 x 350. Sounds (Album)",
+            subtitle: subtitle || "Sarah Ojunwa. Nigeria",
+            description: description || "2014. Oil linen canvas",
+            description1: description1 || "200 x 350. Sounds (Album)",
             category: item.categories[0]?.name.toLowerCase() || "uncategorized",
             price: price,
+            quantityAvailable: item.available_quantity || 0,
           };
         });
         setProductDetails(formattedData);
@@ -79,13 +76,9 @@ const ProductsPage = () => {
   const getFilteredProducts = () => {
     switch (activeScreen) {
       case 2:
-        return productDetails.filter(
-          (product) => product.category === "photography"
-        );
+        return productDetails.filter((product) => product.category === "photography");
       case 3:
-        return productDetails.filter(
-          (product) => product.category === "digital"
-        );
+        return productDetails.filter((product) => product.category === "digital");
       case 4:
         return productDetails.filter((product) => product.category === "nfts");
       default:
@@ -95,10 +88,7 @@ const ProductsPage = () => {
 
   const totalPages = Math.ceil(getFilteredProducts().length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentItems = getFilteredProducts().slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
+  const currentItems = getFilteredProducts().slice(startIndex, startIndex + itemsPerPage);
 
   const renderPageNumbers = () => {
     const maxPagesToShow = 2;
@@ -121,9 +111,7 @@ const ProductsPage = () => {
         <button
           key={1}
           onClick={() => setCurrentPage(1)}
-          className={`px-3 py-1 mx-1 ${
-            currentPage === 1 ? "bg-gray-500 text-white" : "bg-gray-300"
-          } rounded`}
+          className={`px-3 py-1 mx-1 ${currentPage === 1 ? "bg-gray-500 text-white" : "bg-gray-300"} rounded`}
         >
           1
         </button>,
@@ -141,9 +129,7 @@ const ProductsPage = () => {
         <button
           key={i}
           onClick={() => setCurrentPage(i)}
-          className={`px-3 py-1 mx-1 ${
-            currentPage === i ? "bg-gray-500 text-white" : "bg-gray-300"
-          } rounded`}
+          className={`px-3 py-1 mx-1 ${currentPage === i ? "bg-gray-500 text-white" : "bg-gray-300"} rounded`}
         >
           {i}
         </button>
@@ -158,11 +144,7 @@ const ProductsPage = () => {
         <button
           key={totalPages}
           onClick={() => setCurrentPage(totalPages)}
-          className={`px-3 py-1 mx-1 ${
-            currentPage === totalPages
-              ? "bg-gray-500 text-white"
-              : "bg-gray-300"
-          } rounded`}
+          className={`px-3 py-1 mx-1 ${currentPage === totalPages ? "bg-gray-500 text-white" : "bg-gray-300"} rounded`}
         >
           {totalPages}
         </button>
@@ -187,10 +169,7 @@ const ProductsPage = () => {
     <div className="w-full font-montserrat bg-white text-black">
       <Header />
       <div className="py-[5%] mt-16 w-full flex flex-col justify-start lgss:px-14">
-        <HeaderText
-          className={"text-black pt-5 ml-8"}
-          title={"Discover physical digital and NFT artworks "}
-        />
+        <HeaderText className={"text-black pt-5 ml-8"} title={"Discover physical digital and NFT artworks "} />
         <div className="w-full px-[15%] lgss:px-0">
           <ProductSlider products={products} />
         </div>
@@ -202,50 +181,31 @@ const ProductsPage = () => {
                 <div className="">
                   <button
                     onClick={() => setActiveScreen(1)}
-                    className={
-                      activeScreen === 1
-                        ? "text-primary border-primary border-b-2 font-semibold px-[12px]"
-                        : "px-[12px]"
-                    }
+                    className={activeScreen === 1 ? "text-primary border-primary border-b-2 font-semibold px-[12px]" : "px-[12px]"}
                   >
                     ALL
                   </button>
                   <button
                     onClick={() => setActiveScreen(2)}
-                    className={
-                      activeScreen === 2
-                        ? "text-primary border-primary border-b-2 font-semibold px-[12px]"
-                        : "px-[12px]"
-                    }
+                    className={activeScreen === 2 ? "text-primary border-primary border-b-2 font-semibold px-[12px]" : "px-[12px]"}
                   >
                     PHYSICAL
                   </button>
                   <button
                     onClick={() => setActiveScreen(3)}
-                    className={
-                      activeScreen === 3
-                        ? "text-primary border-primary border-b-2 font-semibold px-[12px]"
-                        : "px-[12px]"
-                    }
+                    className={activeScreen === 3 ? "text-primary border-primary border-b-2 font-semibold px-[12px]" : "px-[12px]"}
                   >
                     DIGITAL
                   </button>
                   <button
                     onClick={() => setActiveScreen(4)}
-                    className={
-                      activeScreen === 4
-                        ? "text-primary border-primary border-b-2 font-semibold px-[12px]"
-                        : "px-[12px]"
-                    }
+                    className={activeScreen === 4 ? "text-primary border-primary border-b-2 font-semibold px-[12px]" : "px-[12px]"}
                   >
                     NFT
                   </button>
                 </div>
               </div>
-              <a
-                href="#language"
-                className="hover:underline flex text-[18px] py-4 lgss:py-0 gap-4 items-center uppercase"
-              >
+              <a href="#language" className="hover:underline flex text-[18px] py-4 lgss:py-0 gap-4 items-center uppercase">
                 <span>
                   <img src={footerCountryUK} alt="uk logo" />
                 </span>
@@ -271,9 +231,8 @@ const ProductsPage = () => {
                       description={product.description}
                       description1={product.description1}
                       price={product.price}
-                      onClick={() =>
-                      handleImageClick(product.id, product.price)
-                      }
+                      quantityAvailable={product.quantityAvailable}
+                      onClick={() => handleImageClick(product.id, product.price, product.title)}
                     />
                   ))
                 )}
