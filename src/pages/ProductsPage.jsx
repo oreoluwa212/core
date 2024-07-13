@@ -1,30 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import HeaderText from "../components/textComponents/HeaderText";
+import ProductSlider from "../components/cards/products/ProductSlider";
+import { FaAngleDown, FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import ProductCard from "../components/cards/products/ProductCard";
+import { useNavigate } from "react-router-dom";
 import {
-  footerCountryUK,
-  item1a,
-  item1b,
-  item1c,
-  item1d,
-  item2a,
-  item2b,
-  item2c,
-  item2d,
-  item2e,
-  item3a,
-  item3b,
-  item3c,
-  item3d,
   product1,
   product2,
   product3,
   product4,
+  footerCountryUK,
 } from "../assets";
-import ProductSlider from "../components/cards/products/ProductSlider";
-import { FaAngleDown } from "react-icons/fa";
-import ProductCard from "../components/cards/products/ProductCard";
-import { useNavigate } from "react-router-dom";
+import SkeletonLoader from "../components/cards/products/SkeletonLoader";
 
 const products = [
   { img: product1, text: "Digital Art" },
@@ -37,123 +25,166 @@ const products = [
 
 const ProductsPage = () => {
   const [activeScreen, setActiveScreen] = useState(1);
+  const [productDetails, setProductDetails] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
   const navigate = useNavigate();
+
   const handleImageClick = (img) => {
     navigate("/galleries/products/item-details", { state: { img } });
   };
 
-  const productDetails1 = [
-    {
-      img: item1a,
-      title: "Heaven on Earth",
-      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
-      description: "2014. Oil linen canvas",
-      description1: "200 x 350. Sounds (Album)",
-      price: 2000,
-    },
-    {
-      img: item1b,
-      title: "Purple Silk",
-      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
-      description: "2014. Oil linen canvas",
-      description1: "200 x 350. Sounds (Album)",
-      price: 2000,
-    },
-    {
-      img: item1c,
-      title: "Rainbow Rose",
-      subtitle: "Loki Payaya. Nairobi Kenya",
-      description: "2014. Oil linen canvas",
-      description1: "200 x 350. Sounds (Album)",
-      price: 4000,
-    },
-    {
-      img: item1d,
-      title: "Mayetta",
-      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
-      description: "2014. Oil linen canvas",
-      description1: "200 x 350. Sounds (Album)",
-      price: 1000,
-    },
-  ];
+useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_URL);
+      const data = await response.json();
+      console.log("API Response:", data); // Log the entire API response for debugging
+      const formattedData = data.items.map((item) => {
+        let price = "Price not available";
+        if (item.selling_price) {
+          price = `₦${item.selling_price}`;
+        } else if (item.current_price && item.current_price.length > 0) {
+          const currencyPrice = item.current_price[0];
+          const [currency, value] = Object.entries(currencyPrice)[0];
+          price = `${currency} ${value[0]}`;
+        }
+        return {
+          img: item.photos[0]
+            ? `https://api.timbu.cloud/images/${item.photos[0].url}`
+            : "default-image-url",
+          title: item.name,
+          subtitle: item.description || "No description available",
+          description: item.description || "No description available",
+          description1: item.description || "No description available",
+          price: price,
+        };
+      });
+      console.log("Formatted Data:", formattedData); // Log the formatted data for debugging
+      setProductDetails(formattedData);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const productDetails2 = [
-    {
-      img: item2a,
-      title: "Rainbow Vision",
-      subtitle: "Lara Johnson. South Africa",
-      description: "2014. Oil linen canvas",
-      description1: "200 x 350. Sounds (Album)",
-      price: 1500,
-    },
-    {
-      img: item2b,
-      title: "Vibrating Wave",
-      subtitle: "Sarah Ojunnwa, Nairobi Kenya",
-      description: "2014. Oil linen canvas",
-      description1: "200 x 350. Sounds (Album)",
-      price: 2000,
-    },
-    {
-      img: item2c,
-      title: "Egyptian Writing",
-      subtitle: "Paja Salah. Egypt",
-      description: "2014. Oil linen canvas",
-      description1: "200 x 350. Sounds (Album)",
-      price: 8000,
-    },
-    {
-      img: item2d,
-      title: "Traditional Masks",
-      subtitle: "Lara Folake. Nigeria",
-      description: "2014. Oil linen canvas",
-      description1: "200 x 350. Sounds (Album)",
-      price: 500,
-    },
-    {
-      img: item2e,
-      title: "Paint Brush",
-      subtitle: "Elon Musk. South Africa",
-      description: "2014. Oil linen canvas",
-      description1: "200 x 350. Sounds (Album)",
-      price: 4000,
-    },
-  ];
+  fetchProducts();
+}, []);
 
-  const productDetails3 = [
-    {
-      img: item3a,
-      title: "Yellow Oil Wave",
-      subtitle: "Michael Okeke. Nigeria",
-      description: "2014. Oil linen canvas",
-      description1: "200 x 350. Sounds (Album)",
-      price: 5000,
-    },
-    {
-      img: item3b,
-      title: "Africana",
-      subtitle: "Femi Olarinwaju. Nigeria",
-      description: "2014. Oil linen canvas",
-      description1: "200 x 350. Sounds (Album)",
-      price: 1500,
-    },
-    {
-      img: item3c,
-      title: "Oil Opaque",
-      subtitle: "Oji Iheanyi. Nigeria",
-      description: "2014. Oil linen canvas",
-      description1: "200 x 350. Sounds (Album)",
-      price: 10000,
-    },
-    {
-      img: item3d,
-      title: "Flat Orange",
-      subtitle: "John Andy. Nairobi Kenya",
-      description: "2014. Oil linen canvas",
-      description1: "200 x 350. Sounds (Album)",
-      price: 6000,
-    },
-  ];
+
+  const getFilteredProducts = () => {
+    switch (activeScreen) {
+      case 2:
+        return productDetails.filter(
+          (product) =>
+            product.category && product.category.toLowerCase() === "physical"
+        );
+      case 3:
+        return productDetails.filter(
+          (product) =>
+            product.category && product.category.toLowerCase() === "digital"
+        );
+      case 4:
+        return productDetails.filter(
+          (product) =>
+            product.category && product.category.toLowerCase() === "nft"
+        );
+      default:
+        return productDetails;
+    }
+  };
+
+  const totalPages = Math.ceil(getFilteredProducts().length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentItems = getFilteredProducts().slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  const renderPageNumbers = () => {
+    const maxPagesToShow = 2;
+    const pageNumbers = [];
+    const ellipsis = "...";
+
+    pageNumbers.push(
+      <button
+        key="prev"
+        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+        disabled={currentPage === 1}
+        className="px-3 py-1 mx-1 bg-gray-300 rounded"
+      >
+        <FaAngleLeft />
+      </button>
+    );
+
+    if (currentPage > maxPagesToShow + 1) {
+      pageNumbers.push(
+        <button
+          key={1}
+          onClick={() => setCurrentPage(1)}
+          className={`px-3 py-1 mx-1 ${
+            currentPage === 1 ? "bg-gray-500 text-white" : "bg-gray-300"
+          } rounded`}
+        >
+          1
+        </button>,
+        <span key="ellipsis1" className="px-3 py-1 mx-1">
+          {ellipsis}
+        </span>
+      );
+    }
+
+    const start = Math.max(1, currentPage - maxPagesToShow);
+    const end = Math.min(totalPages, currentPage + maxPagesToShow);
+
+    for (let i = start; i <= end; i++) {
+      pageNumbers.push(
+        <button
+          key={i}
+          onClick={() => setCurrentPage(i)}
+          className={`px-3 py-1 mx-1 ${
+            currentPage === i ? "bg-gray-500 text-white" : "bg-gray-300"
+          } rounded`}
+        >
+          {i}
+        </button>
+      );
+    }
+
+    if (currentPage < totalPages - maxPagesToShow) {
+      pageNumbers.push(
+        <span key="ellipsis2" className="px-3 py-1 mx-1">
+          {ellipsis}
+        </span>,
+        <button
+          key={totalPages}
+          onClick={() => setCurrentPage(totalPages)}
+          className={`px-3 py-1 mx-1 ${
+            currentPage === totalPages
+              ? "bg-gray-500 text-white"
+              : "bg-gray-300"
+          } rounded`}
+        >
+          {totalPages}
+        </button>
+      );
+    }
+
+    pageNumbers.push(
+      <button
+        key="next"
+        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+        disabled={currentPage === totalPages}
+        className="px-3 py-1 mx-1 bg-gray-300 rounded"
+      >
+        <FaAngleRight />
+      </button>
+    );
+
+    return pageNumbers;
+  };
 
   return (
     <div className="w-full font-montserrat bg-white text-black">
@@ -226,239 +257,26 @@ const ProductsPage = () => {
               </a>
             </div>
             <div className="w-full lgss:px-12 pb-4">
-              {activeScreen === 1 ? (
-                <div className="flex w-full flex-col lgss:flex-row gap-5">
-                  <div className="flex flex-col lgss:w-1/3 w-full">
-                    {productDetails1.map((product, index) => (
-                      <div
+              <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {loading
+                  ? Array.from({ length: itemsPerPage }).map((_, index) => (
+                      <SkeletonLoader key={index} />
+                    ))
+                  : currentItems.map((product, index) => (
+                      <ProductCard
                         key={index}
-                        className="flex flex-col gap-10 w-full pb-10 items-center"
-                      >
-                        <ProductCard
-                          img={product.img}
-                          title={product.title}
-                          subtitle={product.subtitle}
-                          description={product.description}
-                          description1={product.description1}
-                          price={product.price}
-                          onClick={() => handleImageClick(product.img)}
-                        />
-                      </div>
+                        img={product.img}
+                        title={product.title}
+                        subtitle={product.subtitle}
+                        description={product.description}
+                        price={product.price}
+                        onClick={() => handleImageClick(product.img)}
+                      />
                     ))}
-                  </div>
-                  <div className="flex flex-col lgss:w-1/3 w-full">
-                    {productDetails2.map((product, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col gap-10 w-full pb-10 items-center"
-                      >
-                        <ProductCard
-                          img={product.img}
-                          title={product.title}
-                          subtitle={product.subtitle}
-                          description={product.description}
-                          description1={product.description1}
-                          price={product.price}
-                          onClick={() => handleImageClick(product.img)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex flex-col lgss:w-1/3 w-full">
-                    {productDetails3.map((product, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col gap-10 w-full pb-10 items-center"
-                      >
-                        <ProductCard
-                          img={product.img}
-                          title={product.title}
-                          subtitle={product.subtitle}
-                          description={product.description}
-                          description1={product.description1}
-                          price={product.price}
-                          onClick={() => handleImageClick(product.img)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : activeScreen === 2 ? (
-                <div className="flex w-full flex-col lgss:flex-row gap-5">
-                  <div className="flex flex-col lgss:w-1/3 w-full">
-                    {productDetails3.map((product, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col gap-10 w-full pb-10 items-center"
-                      >
-                        <ProductCard
-                          img={product.img}
-                          title={product.title}
-                          subtitle={product.subtitle}
-                          description={product.description}
-                          description1={product.description1}
-                          price={product.price}
-                          onClick={() => handleImageClick(product.img)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-col lgss:w-1/3 w-full">
-                    {productDetails2.map((product, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col gap-10 w-full pb-10 items-center"
-                      >
-                        <ProductCard
-                          img={product.img}
-                          title={product.title}
-                          subtitle={product.subtitle}
-                          description={product.description}
-                          description1={product.description1}
-                          price={product.price}
-                          onClick={() => handleImageClick(product.img)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-col lgss:w-1/3 w-full">
-                    {productDetails1.map((product, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col gap-10 w-full pb-10 items-center"
-                      >
-                        <ProductCard
-                          img={product.img}
-                          title={product.title}
-                          subtitle={product.subtitle}
-                          description={product.description}
-                          description1={product.description1}
-                          price={product.price}
-                          onClick={() => handleImageClick(product.img)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : activeScreen === 3 ? (
-                <div className="flex w-full flex-col lgss:flex-row gap-5">
-                  <div className="flex flex-col lgss:w-1/3 w-full">
-                    {productDetails1.map((product, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col gap-10 w-full pb-10 items-center"
-                      >
-                        <ProductCard
-                          img={product.img}
-                          title={product.title}
-                          subtitle={product.subtitle}
-                          description={product.description}
-                          description1={product.description1}
-                          price={product.price}
-                          onClick={() => handleImageClick(product.img)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex flex-col lgss:w-1/3 w-full">
-                    {productDetails2.map((product, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col gap-10 w-full pb-10 items-center"
-                      >
-                        <ProductCard
-                          img={product.img}
-                          title={product.title}
-                          subtitle={product.subtitle}
-                          description={product.description}
-                          description1={product.description1}
-                          price={product.price}
-                          onClick={() => handleImageClick(product.img)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex flex-col lgss:w-1/3 w-full">
-                    {productDetails3.map((product, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col gap-10 w-full pb-10 items-center"
-                      >
-                        <ProductCard
-                          img={product.img}
-                          title={product.title}
-                          subtitle={product.subtitle}
-                          description={product.description}
-                          description1={product.description1}
-                          price={product.price}
-                          onClick={() => handleImageClick(product.img)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <div className="flex w-full flex-col lgss:flex-row gap-5">
-                  <div className="flex flex-col lgss:w-1/3 w-full">
-                    {productDetails3.map((product, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col gap-10 w-full pb-10 items-center"
-                      >
-                        <ProductCard
-                          img={product.img}
-                          title={product.title}
-                          subtitle={product.subtitle}
-                          description={product.description}
-                          description1={product.description1}
-                          price={product.price}
-                          onClick={() => handleImageClick(product.img)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-col lgss:w-1/3 w-full">
-                    {productDetails2.map((product, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col gap-10 w-full pb-10 items-center"
-                      >
-                        <ProductCard
-                          img={product.img}
-                          title={product.title}
-                          subtitle={product.subtitle}
-                          description={product.description}
-                          description1={product.description1}
-                          price={product.price}
-                          onClick={() => handleImageClick(product.img)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-col lgss:w-1/3 w-full">
-                    {productDetails1.map((product, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col gap-10 w-full pb-10 items-center"
-                      >
-                        <ProductCard
-                          img={product.img}
-                          title={product.title}
-                          subtitle={product.subtitle}
-                          description={product.description}
-                          description1={product.description1}
-                          price={product.price}
-                          onClick={() => handleImageClick(product.img)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+              </div>
+            </div>
+            <div className="w-full flex justify-center mt-6">
+              {renderPageNumbers()}
             </div>
           </div>
         </div>
