@@ -93,20 +93,24 @@ const Carousel = () => {
           <div
             className="flex transition-transform justify-start gap-12 items-end duration-500"
             style={{
-              transform: `translateX(-${currentIndex * (cardWidth + cardMargin)}px)`,
+              transform: `translateX(-${
+                currentIndex * (cardWidth + cardMargin)
+              }px)`,
               width: `${cards.length * (cardWidth + cardMargin)}px`,
-              transition: isTransitioning ? `transform ${transitionDuration}ms` : "none",
+              transition: isTransitioning
+                ? `transform ${transitionDuration}ms`
+                : "none",
             }}
           >
             {loading ? (
-              <>
+              <div className="flex gap-10 cursor-pointer transition-transform duration-500">
                 <SkeletonLoader />
                 <SkeletonLoader />
                 <SkeletonLoader />
                 <SkeletonLoader />
                 <SkeletonLoader />
                 <SkeletonLoader />
-              </>
+              </div>
             ) : (
               cards.map((card, index) => (
                 <div
@@ -115,7 +119,11 @@ const Carousel = () => {
                 >
                   <SmallCard
                     key={index}
-                    image={card.photos[0] ? `https://api.timbu.cloud/images/${card.photos[0].url}` : "default-image-url"}
+                    image={
+                      card.photos[0]
+                        ? `https://api.timbu.cloud/images/${card.photos[0].url}`
+                        : "default-image-url"
+                    }
                     title={card.name}
                     artist={getShortDescription(card.description)}
                     price={getPrice(card.current_price)}

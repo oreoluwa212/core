@@ -122,7 +122,7 @@ function ItemDetailsPage() {
                   alt=""
                 />
               </div>
-              <div className="lgss:w-[45%] h-[70vh]">
+              <div className="lgss:w-[45%] h-[80vh]">
                 <img
                   src={item.img}
                   alt="Selected Item"
