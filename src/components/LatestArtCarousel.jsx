@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import HeaderText from "./textComponents/HeaderText";
 import { latest1, latest2 } from "../assets";
 import SliderArrow from "./sliders/SliderArrow";
 
 const LatestArtCarousel = () => {
+  const navigate = useNavigate();
   const cardWidth = 350;
   const cardMarginPercentage = 3;
   const cardMargin = (window.innerWidth * cardMarginPercentage) / 100;
@@ -60,6 +61,10 @@ const LatestArtCarousel = () => {
     };
   }, []);
 
+  const handleSeeMore = () => {
+    navigate("/galleries/products");
+    window.scrollTo(0, 0);
+  };
   const renderGalleries = galleries;
 
   return (
@@ -102,19 +107,26 @@ const LatestArtCarousel = () => {
       />
 
       <div className="w-full flex my-5 justify-center items-center">
-        <Link to={"/galleries/products"}>
-          <button className="px-8 py-2 border border-white text-white hover:bg-black rounded-[32px]">
-            See more
-          </button>
-        </Link>
+        <button
+          onClick={handleSeeMore}
+          className="px-8 py-2 border border-white text-white hover:bg-black rounded-[32px]"
+        >
+          See more
+        </button>
       </div>
     </div>
   );
 };
-const LatestArtCard = ({ imageSrc, title, cardWidth, cardMargin }) => {
+const LatestArtCard = ({ imageSrc, title, cardMargin }) => {
+  const navigate = useNavigate();
+  const handleSeeMore = () => {
+    navigate("/galleries/products");
+    window.scrollTo(0, 0);
+  };
   return (
     <div
-      className="bg-transparent shadow-sm h-fit border-gray-300 w-full shadow-gray-500 lgss:w-[350px] my-4 rounded-[8px] min-h-[160px] flex-shrink-0 relative"
+      onClick={handleSeeMore}
+      className="bg-transparent shadow-sm h-fit hover:scale-105 cursor-pointer border-gray-300 w-full shadow-gray-500 lgss:w-[350px] my-4 rounded-[8px] min-h-[160px] flex-shrink-0 relative"
       style={{ marginRight: `${cardMargin}px` }}
     >
       <div className="h-[200px] relative">

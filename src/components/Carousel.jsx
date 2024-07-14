@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HeaderText from "./textComponents/HeaderText";
 import SliderArrow from "./sliders/SliderArrow";
 import SimpleBtn from "./buttons/SimpleBtn";
@@ -10,7 +10,7 @@ const Carousel = () => {
   const cardWidth = 180;
   const cardMargin = 16;
   const transitionDuration = 500;
-
+  const navigate = useNavigate();
   const [cards, setCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -43,13 +43,17 @@ const Carousel = () => {
   const prevSlide = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? cards.length - 1 : prevIndex - 1));
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? cards.length - 1 : prevIndex - 1
+    );
   };
 
   const nextSlide = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    setCurrentIndex((prevIndex) => (prevIndex === cards.length - 1 ? 0 : prevIndex + 1));
+    setCurrentIndex((prevIndex) =>
+      prevIndex === cards.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   useEffect(() => {
@@ -76,7 +80,12 @@ const Carousel = () => {
 
   const getShortDescription = (description) => {
     if (!description) return "";
-    return description.split(".")[0]; // get the first sentence
+    return description.split(".")[0];
+  };
+
+  const handleSeeMore = () => {
+    navigate("/galleries/products");
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -117,6 +126,7 @@ const Carousel = () => {
                 >
                   <SmallCard
                     key={index}
+                    onClick={handleSeeMore}
                     image={
                       card.photos[0]
                         ? `https://api.timbu.cloud/images/${card.photos[0].url}`
@@ -136,9 +146,9 @@ const Carousel = () => {
       <SliderArrow onPrevClick={prevSlide} onNextClick={nextSlide} />
 
       <div className="w-full flex my-5 justify-center items-center">
-        <Link to={"/galleries/products"}>
-          <SimpleBtn className={"px-[32px] border"}>See more</SimpleBtn>
-        </Link>
+        <SimpleBtn onClick={handleSeeMore} className={"px-[32px] border"}>
+          See more
+        </SimpleBtn>
       </div>
     </div>
   );
