@@ -215,11 +215,19 @@ const OrderSummary = () => {
               key={index}
               className="flex items-center font-semibold text-lg justify-between my-2"
             >
-              <img
-                src={item.img}
-                alt={item.medium}
-                className="w-24 h-24 object-cover mr-4"
-              />
+              <div className="flex items-center gap-2">
+                <img
+                  src={item.img}
+                  alt={item.medium}
+                  className="w-24 h-24 object-cover mr-4"
+                />
+                <div>
+                  <p className="text-lg font-medium">
+                    {item.medium} (x {item.count}
+                    )</p>
+                  <p className="text-sm text-gray-500">{item.size}</p>
+                </div>
+              </div>
               <p className="text-gray-500">{item.price}</p>
             </div>
           ))}
