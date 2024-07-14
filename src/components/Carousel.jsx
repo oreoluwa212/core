@@ -5,6 +5,7 @@ import SliderArrow from "./sliders/SliderArrow";
 import SimpleBtn from "./buttons/SimpleBtn";
 import SmallCard from "./cards/landingPage/SmallCard";
 import SkeletonLoader from "./cards/landingPage/SkeletonLoader";
+import axios from "axios";
 
 const Carousel = () => {
   const cardWidth = 180;
@@ -19,17 +20,16 @@ const Carousel = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(
-          `${import.meta.env.VITE_ALL_BASE_URL}/?organization_id=${
+        const response = await axios.get(
+          `${import.meta.env.VITE_ALL_BASE_URL}?organization_id=${
             import.meta.env.VITE_ORGANIZATION_ID
           }&Appid=${import.meta.env.VITE_APP_ID}&Apikey=${
             import.meta.env.VITE_API_KEY
           }`
         );
-        const data = await response.json();
-        console.log("Fetched products:", data);
+        console.log("Fetched products:", response.data);
 
-        setCards(data.items);
+        setCards(response.data.items);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching products:", error);
