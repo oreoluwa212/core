@@ -51,7 +51,7 @@ const ProductsPage = () => {
           return {
             id: item.id,
             img: item.photos[0]
-              ? `/api/images/${item.photos[0].url}`
+              ? `${import.meta.env.API}/images/${item.photos[0].url}`
               : "default-image-url",
             title: item.name,
             subtitle: subtitle || "Sarah Ojunwa. Nigeria",
