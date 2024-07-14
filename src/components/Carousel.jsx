@@ -103,6 +103,9 @@ const Carousel = () => {
                 <SkeletonLoader />
                 <SkeletonLoader />
                 <SkeletonLoader />
+                <SkeletonLoader />
+                <SkeletonLoader />
+                <SkeletonLoader />
               </>
             ) : (
               cards.map((card, index) => (

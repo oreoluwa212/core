@@ -90,9 +90,9 @@ function ItemDetailsPage() {
   }, [id, passedPrice]);
 
   const handleAddToCart = () => {
-    addItemToCart(item);
     navigate("/cart");
   };
+  
 
   return (
     <div className="w-full font-montserrat bg-white text-black">

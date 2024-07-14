@@ -25,7 +25,7 @@ const ProductsPage = () => {
   const itemsPerPage = 10;
   const navigate = useNavigate();
 
-  const handleImageClick = (id, price, title) => {
+  const handleImageClick = (id, price) => {
     console.log("Navigating to item details with ID:", id);
     console.log("Navigating to item details with price:", price);
     navigate("/galleries/products/item-details", { state: { id, price } });

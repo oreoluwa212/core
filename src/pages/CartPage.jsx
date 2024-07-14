@@ -148,7 +148,7 @@ const CartPage = () => {
             ) : (
               <div className="flex flex-col border-b border-black py-6 px-5">
                 <p className="text-center">
-                  No items in cart.{" "}
+                  No items in cart.
                   <Link to="/galleries/products" className="text-blue-500">
                     Proceed to shop
                   </Link>
