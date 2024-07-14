@@ -158,31 +158,15 @@ const CartPage = () => {
           </div>
         </div>
         <div className="flex flex-col items-end px-5 md:px-0">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex items-center border-2 border-black py-4 px-5 bg-gray-200">
-              <input
-                type="text"
-                placeholder="Discount Code"
-                className="bg-gray-200 w-full"
-              />
-              <button className="ml-4 font-medium">Apply</button>
-            </div>
-            <Link
-              to="/galleries/products"
-              className="flex items-center border-2 border-black py-4 px-5"
-            >
-              <span>Update Cart</span>
-            </Link>
-          </div>
           <Link
             to="/checkout"
-            className="flex items-center justify-center border-2 border-black py-4 px-5 bg-black text-white mt-4 w-full md:w-auto"
+            className="flex items-center rounded-full justify-center border-2 border-black py-4 px-5 md:w-[25%] bg-black text-white mt-4 w-full"
           >
             <span>Proceed to Checkout</span>
           </Link>
           <button
             onClick={clearCart}
-            className="flex items-center justify-center border-2 border-red-500 py-4 px-5 bg-red-500 text-white mt-4 w-full md:w-auto"
+            className="flex items-center justify-center border-2 border-red-500 py-4 px-5 bg-red-500 rounded-full text-white mt-4 w-full md:w-[25%]"
           >
             Clear Cart
           </button>
