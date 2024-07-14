@@ -261,7 +261,7 @@ const ShipmentInfo = () => {
 
 const CheckoutPage = () => {
   const [showModal, setShowModal] = useState(false);
-  const clearCart = useCartStore((state) => state.clearCart); 
+  const clearCart = useCartStore((state) => state.clearCart);
   const navigate = useNavigate();
 
   const handleFormSubmit = () => {
@@ -279,12 +279,12 @@ const CheckoutPage = () => {
       <Header />
       <div className="py-10 lg:px-10">
         <ProgressIndicator />
-        <div className="mt-8 flex flex-col md:flow-row justify-between items-center w-full gap-12">
-          <div className="space-y-8 md:w-[50%]">
+        <div className="mt-8 grid lg:grid-cols-2 gap-16">
+          <div className="space-y-8">
             <h2 className="text-2xl font-semibold">Shipping Address</h2>
             <ShippingAddressForm onSubmit={handleFormSubmit} />
           </div>
-          <div className="space-y-8 md:w-[40%]">
+          <div className="lgss:w-[80%] mt-16 space-y-10">
             <OrderSummary />
             <ShipmentInfo />
           </div>
