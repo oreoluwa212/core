@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import { FaAngleDown } from "react-icons/fa";
 import { footerCountryUK } from "../assets";
 import TransparentBtn from "../components/buttons/TransparentBtn";
-import { CartContext } from "../context/CartContext";
 import useCartStore from "../zustand/CartStore";
 
 function ImgLoader() {
@@ -34,7 +33,6 @@ function ItemDetailsPage() {
     id: null,
     price: null,
   };
-  const { addItemToCart } = useContext(CartContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState(null);
@@ -80,7 +78,6 @@ function ItemDetailsPage() {
             : passedPrice || "Price not available",
         };
         setItem(formattedItem);
-        addItem(formattedItem)
       } catch (error) {
         console.error("Error fetching product details:", error);
       } finally {
@@ -94,7 +91,7 @@ function ItemDetailsPage() {
   }, [id, passedPrice]);
 
   const handleAddToCart = () => {
-    addItemToCart(item);
+    addItem(item)
     navigate("/cart");
   };
   

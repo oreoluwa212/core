@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { extractPrice } from "../utility";
 const TAX_RATE = 0;
 
 const useCartStore = create((set) => ({
@@ -7,11 +8,11 @@ const useCartStore = create((set) => ({
   total: 0,
   addItem: (item) =>
     set((state) => {
-      const existingItem = state.items.find((i) => i.id === item.id);
-      const itemPrice = parseFloat(item.price);
+      const existingItem = state.items.find((i) => i.artist === item.artist);
+      const itemPrice = extractPrice(item.price);
       if (existingItem) {
         const updatedItems = state.items.map((i) =>
-          i.id === item.id ? { ...i, count: i.count + 1 } : i
+          i.artist === item.artist ? { ...i, count: i.count + 1 } : i
         );
         return {
           items: updatedItems,
@@ -19,7 +20,7 @@ const useCartStore = create((set) => ({
           total: state.total + itemPrice * (1 + TAX_RATE),
         };
       }
-      const newItems = [...state.items, { ...item, count: 0 }];
+      const newItems = [...state.items, { ...item, count: 1 }];
       const newSubTotal = state.subTotal + itemPrice;
       const newTotal = newSubTotal * (1 + TAX_RATE);
       return {
@@ -28,12 +29,12 @@ const useCartStore = create((set) => ({
         total: newTotal,
       };
     }),
-  removeItem: (id) =>
+  removeItem: (artist) =>
     set((state) => {
-      const itemToRemove = state.items.find((item) => item.id === id);
+      const itemToRemove = state.items.find((item) => item.artist === artist);
       if (!itemToRemove) return state;
-      const itemPrice = parseFloat(itemToRemove.price);
-      const updatedItems = state.items.filter((item) => item.id !== id);
+      const itemPrice = extractPrice(itemToRemove.price);
+      const updatedItems = state.items.filter((item) => item.artist !== artist);
       const newSubTotal = state.subTotal - itemPrice * itemToRemove.count;
       const newTotal = newSubTotal * (1 + TAX_RATE);
       return {
@@ -42,13 +43,13 @@ const useCartStore = create((set) => ({
         total: newTotal,
       };
     }),
-  updateItem: (id, count) =>
+  updateItem: (artist, count) =>
     set((state) => {
       const updatedItems = state.items.map((item) =>
-        item.id === id ? { ...item, count } : item
+        item.artist === artist ? { ...item, count } : item
       );
       const subTotal = updatedItems.reduce(
-        (sum, item) => sum + parseFloat(item.price) * item.count,
+        (sum, item) => sum + extractPrice(item.price) * item.count,
         0
       );
       const total = subTotal * (1 + TAX_RATE);
@@ -64,17 +65,5 @@ const useCartStore = create((set) => ({
       subTotal: 0,
       total: 0,
     })),
-  calculateTotals: () =>
-    set((state) => {
-      const subTotal = state.items.reduce(
-        (sum, item) => sum + parseFloat(item.price) * item.count,
-        0
-      );
-      const total = subTotal * (1 + TAX_RATE);
-      return {
-        subTotal,
-        total,
-      };
-    }),
 }));
 export default useCartStore;

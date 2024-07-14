@@ -4,12 +4,12 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import SimpleBtn from "./buttons/SimpleBtn";
 import { logo } from "../assets";
 import { Link, useNavigate } from "react-router-dom";
-import { CartContext } from "../context/CartContext";
+import useCartStore from "../zustand/CartStore";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { getTotalItems, clearCart, cartItems } = useContext(CartContext);
-  const [dummyState, setDummyState] = useState(false); // Dummy state for force update
+  const { items: cartItems } = useCartStore();
+  const [dummyState, setDummyState] = useState(false);
 
   const handleNavigation = (path, sectionId) => {
     navigate(path, { state: { sectionId } });
@@ -17,10 +17,9 @@ const Header = () => {
 
   const handleClearCart = () => {
     clearCart();
-    setDummyState(!dummyState); // Toggle dummy state to force update
+    setDummyState(!dummyState);
   };
 
-  // Use useEffect to update dummy state when cart items change
   useEffect(() => {
     setDummyState(!dummyState);
   }, [cartItems]);
@@ -55,7 +54,7 @@ const Header = () => {
           <div className="relative">
             <PiShoppingCartSimpleFill className="text-2xl" />
             <span className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full px-2 text-xs">
-              {getTotalItems()}
+              {cartItems.length}
             </span>
           </div>
         </Link>
@@ -73,7 +72,7 @@ const Header = () => {
         <div className="relative">
           <PiShoppingCartSimpleFill size={24} />
           <span className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full px-2 text-xs">
-            {getTotalItems()}
+            {cartItems.length}
           </span>
         </div>
         <GiHamburgerMenu />

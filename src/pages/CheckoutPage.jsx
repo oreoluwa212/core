@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-import { CartContext } from "../context/CartContext";
 import Modal from "../components/modals/Modal";
+import useCartStore from "../zustand/CartStore";
 
 const ProgressIndicator = () => {
   return (
@@ -181,7 +181,7 @@ const ShippingAddressForm = ({ onSubmit }) => {
       </div>
       <button
         type="submit"
-        className="w-full bg-black text-white py-2 rounded-full hover:bg-gray-900 focus:outline-none focus:bg-gray-900"
+        className="w-full bg-black text-white py-3 rounded-full hover:bg-gray-900 focus:outline-none focus:bg-gray-900"
       >
         Next
       </button>
@@ -190,7 +190,7 @@ const ShippingAddressForm = ({ onSubmit }) => {
 };
 
 const OrderSummary = () => {
-  const { cartItems } = useContext(CartContext);
+    const { items: cartItems, total } = useCartStore();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -211,11 +211,24 @@ const OrderSummary = () => {
         <div>
           <hr className="my-2" />
           {cartItems.map((item, index) => (
-            <div key={index} className="flex justify-between my-2">
-              <p>{item.name}</p>
-              <p>${item.price * item.quantity}</p> {/* Display calculated price */}
+            <div
+              key={index}
+              className="flex items-center font-semibold text-lg justify-between my-2"
+            >
+              <img
+                src={item.img}
+                alt={item.medium}
+                className="w-24 h-24 object-cover mr-4"
+              />
+              <p className="text-gray-500">{item.price}</p>
             </div>
           ))}
+          <div className="w-full flex justify-end">
+            <div className="flex justify-start items-start extrabold border-y-2 py-3 gap-8 text-2xl">
+              <h1 className="">Total =</h1>
+              <p className="font-semibold">{total}</p>
+            </div>
+          </div>
         </div>
       )}
     </div>
@@ -240,7 +253,6 @@ const ShipmentInfo = () => {
       {isOpen && (
         <div>
           <hr className="my-2" />
-          {/* You can add shipment details here */}
         </div>
       )}
     </div>
@@ -249,6 +261,7 @@ const ShipmentInfo = () => {
 
 const CheckoutPage = () => {
   const [showModal, setShowModal] = useState(false);
+    const { items: clearCart } = useCartStore();
   const navigate = useNavigate();
 
   const handleFormSubmit = () => {
@@ -257,12 +270,12 @@ const CheckoutPage = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
+    clearCart();
     navigate("/");
-    CartContext.clearCart();
   };
 
   return (
-    <div className="w-full font-montserrat bg-white text-black">
+    <div className="w-full font-montserrat bg-white text-black px-[5%]">
       <Header />
       <div className="py-10 lg:px-10">
         <ProgressIndicator />
