@@ -20,7 +20,11 @@ const Carousel = () => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://timbu-get-all-products.reavdev.workers.dev/?organization_id=eb107d3491dc42afa7d25ac1f3ff3b91&reverse_sort=false&page=1&size=6&Appid=SND0O8PGSJS876U&Apikey=121357870811419688acf675ba18165a20240712140744647481"
+          `${import.meta.env.VITE_ALL_BASE_URL}/?organization_id=${
+            import.meta.env.VITE_ORGANIZATION_ID
+          }&Appid=${import.meta.env.VITE_APP_ID}&Apikey=${
+            import.meta.env.VITE_API_KEY
+          }`
         );
         const data = await response.json();
         console.log("Fetched products:", data);
@@ -110,7 +114,7 @@ const Carousel = () => {
             }}
           >
             {loading ? (
-              <div className="flex gap-10 cursor-pointer transition-transform duration-500">
+              <div className="flex gap-10 cursor-pointer transition-transform duration-500 bg-[#111111]">
                 <SkeletonLoader />
                 <SkeletonLoader />
                 <SkeletonLoader />

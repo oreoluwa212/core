@@ -21,7 +21,7 @@ const LandingPage = () => {
   }, [location]);
 
   return (
-    <>
+    <div className="bg-[#111111]">
       <section id="home">
         <Hero />
       </section>
@@ -35,7 +35,7 @@ const LandingPage = () => {
         <JoinInFree />
       </section>
       <Footer />
-    </>
+    </div>
   );
 };
 

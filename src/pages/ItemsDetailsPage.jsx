@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { FaAngleDown } from "react-icons/fa";
+import { TbTruckDelivery } from "react-icons/tb";
 import { footerCountryUK } from "../assets";
 import TransparentBtn from "../components/buttons/TransparentBtn";
 import useCartStore from "../zustand/CartStore";
@@ -37,7 +38,6 @@ function ItemDetailsPage() {
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState(null);
   const { addItem, items } = useCartStore();
-  console.log("items", items)
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -115,24 +115,25 @@ function ItemDetailsPage() {
         ) : (
           item && (
             <div className="flex lgss:flex-row flex-col justify-center w-full lgss:justify-between pt-10 lgss:pt-0 lgss:px-0 px-5">
-              <div className="w-[10%] hidden lgss:flex h-[100px]">
+              <div className="w-[13%] hidden lgss:flex h-[120px]">
                 <img
                   src={item.img}
                   className="w-full rounded-lg h-full"
                   alt=""
                 />
               </div>
-              <div className="lgss:w-[45%] h-[80vh]">
+              <div className="h-full lgss:w-[85%] flex lgss:flex-row flex-col justify-between items-center">
+              <div className="lgss:w-[50%] w-full h-[80vh]">
                 <img
                   src={item.img}
                   alt="Selected Item"
                   className="w-full rounded-lg h-full"
                 />
               </div>
-              <div className="lgss:w-[40%] pt-7 px-4 lgss:pt-0 lgss:px-0">
-                <div className="flex flex-col gap-2 pb-4">
+              <div className="lgss:w-[47%] w-full px-4 lgss:pt-0 lgss:px-0">
+                <div className="flex flex-col gap-2 py-4">
                   <div className="lgss:w-[50%] w-full md:w-[70%] grid grid-cols-2">
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-10">
                       <strong>Artist:</strong>
                       <strong>Medium:</strong>
                       <strong>Year:</strong>
@@ -140,7 +141,7 @@ function ItemDetailsPage() {
                       <strong>Condition:</strong>
                       <strong>Size:</strong>
                     </div>
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-10">
                       <p>{item.artist}</p>
                       <p>{item.medium}</p>
                       <p>{item.year}</p>
@@ -150,7 +151,7 @@ function ItemDetailsPage() {
                     </div>
                   </div>
                 </div>
-                <div className="mt-5">
+                <div className="pt-6 space-y-2">
                   <div className="flex items-center gap-2">
                     <img
                       src={footerCountryUK}
@@ -161,25 +162,20 @@ function ItemDetailsPage() {
                     <FaAngleDown />
                   </div>
                   <div className="py-3 flex items-center gap-2">
-                    <span className="font-semibold">{item.currency}</span>
                     <span>{item.price}</span>
                   </div>
-                  <div className="flex items-center">
-                    <span className="text-sm text-gray-500">Free Shipping</span>
+                  <div className="flex gap-4 text-lg font-medium">
+                    <TbTruckDelivery/>
+                    <span className="text-sm">Free Shipping</span>
                   </div>
-                  <div className="mt-5 flex gap-8 flex-col lgss:flex-row">
+                  <div className="pt-7">
                     <TransparentBtn
                       btnText={"Add to cart"}
                       onClick={handleAddToCart}
                     />
-                    <TransparentBtn btnText={"Invest"} />
-                  </div>
-                  <div className="mt-7 flex flex-col md:flex-row gap-8 w-full lgss:flex-row justify-between lgss:pr-[20%]">
-                    <TransparentBtn btnText={"Message"} />
-                    <TransparentBtn btnText={"Share"} />
-                    <TransparentBtn btnText={"Sell Yours"} />
                   </div>
                 </div>
+              </div>
               </div>
             </div>
           )

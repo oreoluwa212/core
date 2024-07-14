@@ -13,14 +13,14 @@ const CartPage = () => {
   return (
     <div className="w-full font-montserrat bg-white text-black">
       <Header />
-      <div className="py-[5%] mt-16 w-full flex flex-col justify-between gap-16 md:gap-8 lg:px-[5%]">
+      <div className="py-[5%] mt-16 w-full flex flex-col justify-between gap-16 md:gap-8 px-[5%]">
         <div className="w-full flex justify-between items-center py-8">
         <Link to={"/galleries/products"}>
           <TransparentBtn btnText={"Back to Shop"} />
         </Link>
         <button
           onClick={() => clearCart()}
-          className="flex items-center justify-center border-2 border-red-500 py-3 px-5 bg-red-500 rounded-full text-white"
+          className="flex items-center justify-center border-2 border-red-500 py-2 px-8 bg-red-500 rounded-full text-white"
           >
           Clear Cart
         </button>
