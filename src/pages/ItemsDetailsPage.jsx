@@ -5,6 +5,7 @@ import { FaAngleDown } from "react-icons/fa";
 import { footerCountryUK } from "../assets";
 import TransparentBtn from "../components/buttons/TransparentBtn";
 import { CartContext } from "../context/CartContext";
+import useCartStore from "../zustand/CartStore";
 
 function ImgLoader() {
   return (
@@ -37,6 +38,8 @@ function ItemDetailsPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState(null);
+  const { addItem, items } = useCartStore();
+  console.log("items", items)
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -77,6 +80,7 @@ function ItemDetailsPage() {
             : passedPrice || "Price not available",
         };
         setItem(formattedItem);
+        addItem(formattedItem)
       } catch (error) {
         console.error("Error fetching product details:", error);
       } finally {
@@ -93,6 +97,7 @@ function ItemDetailsPage() {
     addItemToCart(item);
     navigate("/cart");
   };
+  
 
   return (
     <div className="w-full font-montserrat bg-white text-black">

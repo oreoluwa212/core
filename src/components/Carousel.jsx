@@ -1,43 +1,57 @@
 import React, { useState, useEffect } from "react";
-import SmallCard from "./cards/landingPage/SmallCard";
-import LargeCard from "./cards/landingPage/LargeCard";
-import { FaAngleDown } from "react-icons/fa";
-import SimpleBtn from "./buttons/SimpleBtn";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import HeaderText from "./textComponents/HeaderText";
-import { footerCountryUK } from "../assets";
 import SliderArrow from "./sliders/SliderArrow";
+import SimpleBtn from "./buttons/SimpleBtn";
+import SmallCard from "./cards/landingPage/SmallCard";
+import SkeletonLoader from "./cards/landingPage/SkeletonLoader";
 
-const Carousel = ({ cards }) => {
-  const cardWidth = 150;
-  const visibleCards = 3;
+const Carousel = () => {
+  const cardWidth = 180;
   const cardMargin = 16;
   const transitionDuration = 500;
 
-  const totalCards = [...cards, ...cards, ...cards];
-  const [currentIndex, setCurrentIndex] = useState(visibleCards);
+  const [cards, setCards] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [expandedCardIndex, setExpandedCardIndex] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          "https://timbu-get-all-products.reavdev.workers.dev/?organization_id=eb107d3491dc42afa7d25ac1f3ff3b91&reverse_sort=false&page=1&size=6&Appid=SND0O8PGSJS876U&Apikey=121357870811419688acf675ba18165a20240712140744647481"
+        );
+        const data = await response.json();
+        console.log("Fetched products:", data);
+
+        setCards(data.items);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleTransitionEnd = () => {
     setIsTransitioning(false);
-    if (currentIndex === 0) {
-      setCurrentIndex(cards.length);
-    } else if (currentIndex === totalCards.length - visibleCards) {
-      setCurrentIndex(cards.length - visibleCards);
-    }
   };
 
   const prevSlide = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    setCurrentIndex((prevIndex) => prevIndex - 1);
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? cards.length - 1 : prevIndex - 1));
   };
 
   const nextSlide = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    setCurrentIndex((prevIndex) => prevIndex + 1);
+    setCurrentIndex((prevIndex) => (prevIndex === cards.length - 1 ? 0 : prevIndex + 1));
   };
 
   useEffect(() => {
@@ -50,8 +64,22 @@ const Carousel = ({ cards }) => {
     };
   }, [currentIndex]);
 
-  const indicatorPosition =
-    (currentIndex % cards.length) * (100 / cards.length);
+  const getPrice = (currentPrice) => {
+    if (currentPrice.length > 0) {
+      const priceInfo = currentPrice[0];
+      if (priceInfo.EUR) {
+        return `€${priceInfo.EUR[0]}`;
+      } else if (priceInfo.NGN) {
+        return `₦${priceInfo.NGN[0]}`;
+      }
+    }
+    return "Price not available";
+  };
+
+  const getShortDescription = (description) => {
+    if (!description) return "";
+    return description.split(".")[0]; // get the first sentence
+  };
 
   return (
     <div className="relative w-full overflow-hidden flex flex-col justify-center items-center bg-[#111111] py-10 px-4 h-fit">
@@ -61,43 +89,45 @@ const Carousel = ({ cards }) => {
         className={"text-center text-white"}
       />
       <div className="w-full flex justify-center items-center">
-      <div className="w-[80%] lgss:mt-5 lgss:py-10 overflow-hidden">
-        <div
-          className="flex transition-transform justify-end gap-12 items-end duration-500"
-          style={{
-            transform: `translateX(-${
-              currentIndex * (cardWidth + cardMargin)
-            }px)`,
-            width: `${totalCards.length * (cardWidth + cardMargin)}px`,
-            transition: isTransitioning
-              ? `transform ${transitionDuration}ms`
-              : "none",
-          }}
-        >
-          {totalCards.map((card, index) => (
-            <div
-              key={index}
-              className={`flex-shrink-0 cursor-pointer transition-transform duration-500 ${
-                expandedCardIndex === index % cards.length ? "scale-150" : ""
-              }`}
-            >
-              {card.type === "small" ? (
-                <SmallCard {...card} />
-              ) : (
-                <LargeCard {...card} />
-              )}
-            </div>
-          ))}
+        <div className="w-[70%] lgss:mt-5 lgss:py-10 overflow-hidden">
+          <div
+            className="flex transition-transform justify-start gap-12 items-end duration-500"
+            style={{
+              transform: `translateX(-${currentIndex * (cardWidth + cardMargin)}px)`,
+              width: `${cards.length * (cardWidth + cardMargin)}px`,
+              transition: isTransitioning ? `transform ${transitionDuration}ms` : "none",
+            }}
+          >
+            {loading ? (
+              <>
+                <SkeletonLoader />
+                <SkeletonLoader />
+                <SkeletonLoader />
+                <SkeletonLoader />
+                <SkeletonLoader />
+                <SkeletonLoader />
+              </>
+            ) : (
+              cards.map((card, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 cursor-pointer transition-transform duration-500"
+                >
+                  <SmallCard
+                    key={index}
+                    image={card.photos[0] ? `https://api.timbu.cloud/images/${card.photos[0].url}` : "default-image-url"}
+                    title={card.name}
+                    artist={getShortDescription(card.description)}
+                    price={getPrice(card.current_price)}
+                  />
+                </div>
+              ))
+            )}
+          </div>
         </div>
       </div>
-      </div>
 
-      <SliderArrow
-        onPrevClick={prevSlide}
-        onNextClick={nextSlide}
-        indicatorPosition={indicatorPosition}
-        totalSlides={cards.length}
-      />
+      <SliderArrow onPrevClick={prevSlide} onNextClick={nextSlide} />
 
       <div className="w-full flex my-5 justify-center items-center">
         <Link to={"/galleries/products"}>

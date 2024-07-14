@@ -1,10 +1,16 @@
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import useCartStore from "../zustand/CartStore";
+import QuantityControl from "../components/buttons/QuantityControl";
+import { extractPrice } from "../utility";
 
-function CartPage() {
-  const { cartItems, removeItemFromCart } = useContext(CartContext);
+const CartPage = () => {
+  const [price, setPrice] = useState();
+  const [count, setCount] = useState(1);
+  const { removeItemFromCart, clearCart } = useContext(CartContext);
+  const { items: cartItems } = useCartStore();
 
   return (
     <div className="w-full font-montserrat bg-white text-black">
@@ -30,34 +36,45 @@ function CartPage() {
                 </tr>
               </thead>
               <tbody>
-                {cartItems.map((item, index) => (
-                  <tr key={index}>
-                    <td className="py-6 flex items-start">
-                      <img
-                        src={item.img}
-                        alt={item.album}
-                        className="w-24 h-24 object-cover mr-4"
-                      />
-                      <div>
-                        <p className="text-lg font-medium">{item.album}</p>
-                        <p className="text-sm text-gray-500">({item.album})</p>
-                        <button
-                          onClick={() => removeItemFromCart(index)}
-                          className="text-red-500 text-sm"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </td>
-                    <td className="px-6 text-left">{item.price}</td>
-                    <td className="px-6 text-left">
-                      <div className="flex items-center">
-                        <span>1</span>
-                      </div>
-                    </td>
-                    <td className="px-6 text-left">{item.price}</td>
-                  </tr>
-                ))}
+                {cartItems.map((item, index) => {
+                  const unitPrice = extractPrice(item.price);
+                  return (
+                    <tr key={index}>
+                      <td className="py-6 flex items-start">
+                        <img
+                          src={item.img}
+                          alt={item.medium}
+                          className="w-24 h-24 object-cover mr-4"
+                        />
+                        <div>
+                          <p className="text-lg font-medium">{item.medium}</p>
+                          <p className="text-sm text-gray-500">{item.size}</p>
+                          <p className="text-sm text-gray-500">
+                            Available: {item.quantity}
+                          </p>
+                          <button
+                            onClick={() => removeItemFromCart(index)}
+                            className="text-red-500 text-sm"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </td>
+                      <td className="px-6 text-left">{item.price}</td>
+                      <td className="px-6 text-left">
+                        <QuantityControl
+                          state={count}
+                          setState={setCount}
+                          itemQuantity={item.count}
+                          itemId={item.id}
+                        />
+                      </td>
+                      <td className="px-6 text-left">
+                        {item.count * unitPrice}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           ) : (
@@ -93,68 +110,86 @@ function CartPage() {
 
           <div className="md:hidden">
             {cartItems.length > 0 ? (
-              cartItems.map((item, index) => (
-                <div
-                  className="flex flex-col border-b border-black py-6 px-5"
-                  key={index}
-                >
-                  <div className="flex items-start mb-4">
-                    <img
-                      src={item.img}
-                      alt={item.album}
-                      className="w-24 h-24 object-cover mr-4"
-                    />
-                    <div>
-                      <p className="text-lg font-medium">{item.album}</p>
-                      <p className="text-sm text-gray-500">({item.album})</p>
-                      <button
-                        onClick={() => removeItemFromCart(index)}
-                        className="text-red-500 text-sm"
-                      >
-                        Remove
-                      </button>
+              cartItems.map((item, index) => {
+                const unitPrice = extractPrice(item.price);
+                return (
+                  <div
+                    className="flex flex-col border-b border-black py-6 px-5"
+                    key={index}
+                  >
+                    <div className="flex items-start mb-4">
+                      <img
+                        src={item.img}
+                        alt={item.medium}
+                        className="w-24 h-24 object-cover mr-4"
+                      />
+                      <div>
+                        <div>
+                          <p className="text-lg font-medium">{item.medium}</p>
+                          <p className="text-sm text-gray-500">{item.size}</p>
+                          <p className="text-sm text-gray-500">
+                            Available: {item.quantity}
+                          </p>
+                          <button
+                            onClick={() => removeItemFromCart(index)}
+                            className="text-red-500 text-sm"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between mb-4">
+                      <span className="font-medium">Price:</span>
+                      <span>{item.price}</span>
+                    </div>
+                    <div className="flex justify-between mb-4">
+                      <span className="font-medium">Quantity:</span>
+                      <td className="px-6 text-left">
+                        <QuantityControl
+                          state={count}
+                          setState={setCount}
+                          itemQuantity={item.count}
+                          itemId={item.id}
+                        />
+                      </td>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="font-medium">Total:</span>
+                      <span>{item.count * unitPrice}</span>
                     </div>
                   </div>
-                  <div className="flex justify-between mb-4">
-                    <span className="font-medium">Price:</span>
-                    <span>{item.price}</span>
-                  </div>
-                  <div className="flex justify-between mb-4">
-                    <span className="font-medium">Quantity:</span>
-                    <div className="flex items-center">
-                      <span>1</span>
-                    </div>
-                  </div>
-                  <div className="hidden lgss:flex justify-between">
-                    <span className="font-medium">Total:</span>
-                    <span>{item.price}</span>
-                  </div>
-                </div>
-              ))
+                );
+              })
             ) : (
               <div className="flex flex-col border-b border-black py-6 px-5">
-                <div className="text-center flex py-6">
-                  <h3>No items in cart.</h3>
-                  <Link to="/galleries/products" className="text-blue-500 pl-2">
+                <p className="text-center">
+                  No items in cart.
+                  <Link to="/galleries/products" className="text-blue-500">
                     Proceed to shop
                   </Link>
-                </div>
+                </p>
               </div>
             )}
           </div>
         </div>
-        {cartItems.length > 0 && (
-          <div className="flex justify-center lgss:justify-end mt-12 lgss:pt-12">
-            <Link to={"/checkout"}>
-              <button className="bg-black text-white px-16 lgss:px-6 py-3 lgss:w-full rounded-full">
-                PROCEED TO CHECKOUT
-              </button>
-            </Link>
-          </div>
-        )}
+        <div className="flex flex-col items-end px-5 md:px-0">
+          <Link
+            to="/checkout"
+            className="flex items-center rounded-full justify-center border-2 border-black py-4 px-5 md:w-[25%] bg-black text-white mt-4 w-full"
+          >
+            <span>Proceed to Checkout</span>
+          </Link>
+          <button
+            onClick={clearCart}
+            className="flex items-center justify-center border-2 border-red-500 py-4 px-5 bg-red-500 rounded-full text-white mt-4 w-full md:w-[25%]"
+          >
+            Clear Cart
+          </button>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default CartPage;
