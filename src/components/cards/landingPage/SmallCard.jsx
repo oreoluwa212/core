@@ -2,7 +2,7 @@ import React from "react";
 
 const SmallCard = ({ image, title, artist, price }) => {
   return (
-    <div className="lgss:w-[400px] h-fit bg-transparent font-montserrat text-white border-[2px] border-[#413f3f] rounded-lg shadow-[#1B1B1B4D] shadow-sm relative">
+    <div className="lgss:w-[300px] h-fit bg-transparent font-montserrat text-white border-[2px] border-[#413f3f] rounded-lg shadow-[#1B1B1B4D] shadow-sm relative">
       <div className="h-[240px] relative">
         <img
           src={image}
