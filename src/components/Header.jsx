@@ -5,14 +5,22 @@ import SimpleBtn from "./buttons/SimpleBtn";
 import { logo } from "../assets";
 import { Link, useNavigate } from "react-router-dom";
 import useCartStore from "../zustand/CartStore";
+import { FaTimes } from "react-icons/fa";
+import BlackBtn from "./buttons/BlackBtn";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { items: cartItems } = useCartStore();
   const [dummyState, setDummyState] = useState(false);
 
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   const handleNavigation = (path, sectionId) => {
     navigate(path, { state: { sectionId } });
+    setIsMenuOpen(false); // Close menu after navigation
   };
 
   const handleClearCart = () => {
@@ -75,7 +83,43 @@ const Header = () => {
             {cartItems.length}
           </span>
         </div>
-        <GiHamburgerMenu />
+        <button onClick={handleMenuToggle} className="focus:outline-none">
+          {isMenuOpen ? <FaTimes /> : <GiHamburgerMenu />}
+        </button>
+      </div>
+      <div
+        className={`fixed top-0 right-0 h-full w-full bg-white shadow-md transform ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        } transition-transform duration-300 ease-in-out lg:hidden flex flex-col items-center space-y-6 pt-20 z-50`}
+      >
+        <button
+          onClick={handleMenuToggle}
+          className="absolute top-8 right-6 text-black text-[28px] focus:outline-none"
+        >
+          <FaTimes />
+        </button>
+        <button
+          onClick={() => handleNavigation("/", "home")}
+          className="text-black hover:underline"
+        >
+          Home
+        </button>
+        <button
+          onClick={() => handleNavigation("/", "artworks")}
+          className="text-black hover:underline"
+        >
+          Artworks
+        </button>
+        <button
+          onClick={() => handleNavigation("/", "about")}
+          className="text-black hover:underline"
+        >
+          About
+        </button>
+        <div className="pt-10 w-full flex flex-col items-center gap-4">
+          <BlackBtn className={"w-[60%] py-2"}>Sign Up</BlackBtn>
+          <BlackBtn className={"w-[60%] py-2"}>Log In</BlackBtn>
+        </div>
       </div>
     </header>
   );
