@@ -130,8 +130,11 @@ const CartPage = () => {
               cartItems.map((item, index) => {
                 const unitPrice = extractPrice(item.price);
                 return (
-                  <div className="w-full px-5" key={index}>
-                    <div className="flex flex-col border-b border-black py-6 px-5">
+                  <div className="w-full px-5">
+                    <div
+                      className="flex flex-col border-b border-black py-6 px-5"
+                      key={index}
+                    >
                       <div className="flex items-start mb-4">
                         <img
                           src={item.img}
@@ -139,55 +142,63 @@ const CartPage = () => {
                           className="w-24 h-24 object-cover mr-4"
                         />
                         <div>
-                          <p className="text-lg font-medium">{item.medium}</p>
-                          <p className="text-sm text-gray-500">{item.size}</p>
-                          <p className="text-sm text-gray-500">
-                            Available: {item.quantity}
-                          </p>
-                          <button
-                            onClick={() => removeItem(item.artist)}
-                            className="text-red-500 text-sm"
-                          >
-                            Remove
-                          </button>
+                          <div>
+                            <p className="text-lg font-medium">{item.medium}</p>
+                            <p className="text-sm text-gray-500">{item.size}</p>
+                            <p className="text-sm text-gray-500">
+                              Available: {item.quantity}
+                            </p>
+                            <button
+                              onClick={() => removeItem(item.artist)}
+                              className="text-red-500 text-sm"
+                            >
+                              Remove
+                            </button>
+                          </div>
                         </div>
                       </div>
                       <div className="flex justify-between mb-4">
-                        <p className="text-sm">Price: {item.price}</p>
-                        <p className="text-sm">
-                          Total: {item.count * unitPrice}
-                        </p>
+                        <span className="font-medium">Price:</span>
+                        <span>{item.price}</span>
                       </div>
-                      <div className="flex justify-between items-center">
-                        <p className="text-sm">Quantity:</p>
-                        <QuantityControl
-                          state={count}
-                          setState={setCount}
-                          itemQuantity={item.count}
-                          itemId={item.artist}
-                        />
+                      <div className="flex justify-between mb-4">
+                        <span className="font-medium">Quantity:</span>
+                        <td className="px-6 text-left">
+                          <QuantityControl
+                            state={count}
+                            setState={setCount}
+                            itemQuantity={item.count}
+                            itemId={item.artist}
+                          />
+                        </td>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="font-medium">Total:</span>
+                        <span>{item.count * unitPrice}</span>
                       </div>
                     </div>
                   </div>
                 );
               })
             ) : (
-              <div className="w-full px-5">
-                <div className="flex flex-col items-center py-6 px-5">
-                  <p className="text-center text-gray-500 mb-4">
-                    No items in cart.
-                  </p>
+              <div className="flex flex-col border-b border-black py-6 px-5">
+                <p className="text-center">
+                  No items in cart.
                   <Link to="/galleries/products" className="text-blue-500">
                     Proceed to shop
                   </Link>
-                </div>
+                </p>
               </div>
             )}
-            <div className="flex justify-between items-center w-full px-5 py-3 border-t-2 font-semibold text-xl">
-              <h1 className="w-[60%]">Total</h1>
-              <p className="font-extrabold">{total}</p>
-            </div>
           </div>
+        </div>
+        <div className="flex flex-col items-end px-5 md:px-0">
+          <Link
+            to="/checkout"
+            className="flex items-center rounded-full justify-center border-2 border-black py-4 px-5 md:w-[25%] bg-black text-white mt-4 w-full"
+          >
+            <span>Proceed to Checkout</span>
+          </Link>
         </div>
       </div>
     </div>
