@@ -5,8 +5,14 @@ import ProductSlider from "../components/cards/products/ProductSlider";
 import { FaAngleDown, FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import ProductCard from "../components/cards/products/ProductCard";
 import { useNavigate } from "react-router-dom";
-import SkeletonLoader from "../components/cards/products/SkeletonLoader";
-import { footerCountryUK, product1, product2, product3, product4 } from "../assets";
+import {
+  footerCountryUK,
+  product1,
+  product2,
+  product3,
+  product4,
+} from "../assets";
+import TopSlideSkeleton from "../components/cards/products/TopSlideSkeleton";
 
 const products = [
   { img: product1, text: "Digital Art" },
@@ -33,6 +39,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true); // Ensure loading state is set to true at the start of fetch
       try {
         const response = await fetch(import.meta.env.VITE_API_URL);
         const data = await response.json();
@@ -46,7 +53,9 @@ const ProductsPage = () => {
             price = `${currency} ${value[0]}`;
           }
 
-          const [subtitle, description, description1] = (item.description || "").split("\r\n");
+          const [subtitle, description, description1] = (
+            item.description || ""
+          ).split("\r\n");
 
           return {
             id: item.id,
@@ -66,7 +75,7 @@ const ProductsPage = () => {
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
-        setLoading(false);
+        setLoading(false); // Set loading to false after fetch is complete
       }
     };
 
@@ -76,9 +85,13 @@ const ProductsPage = () => {
   const getFilteredProducts = () => {
     switch (activeScreen) {
       case 2:
-        return productDetails.filter((product) => product.category === "photography");
+        return productDetails.filter(
+          (product) => product.category === "photography"
+        );
       case 3:
-        return productDetails.filter((product) => product.category === "digital");
+        return productDetails.filter(
+          (product) => product.category === "digital"
+        );
       case 4:
         return productDetails.filter((product) => product.category === "nfts");
       default:
@@ -88,7 +101,10 @@ const ProductsPage = () => {
 
   const totalPages = Math.ceil(getFilteredProducts().length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentItems = getFilteredProducts().slice(startIndex, startIndex + itemsPerPage);
+  const currentItems = getFilteredProducts().slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   const renderPageNumbers = () => {
     const maxPagesToShow = 2;
@@ -111,7 +127,9 @@ const ProductsPage = () => {
         <button
           key={1}
           onClick={() => setCurrentPage(1)}
-          className={`px-3 py-1 mx-1 ${currentPage === 1 ? "bg-gray-500 text-white" : "bg-gray-300"} rounded`}
+          className={`px-3 py-1 mx-1 ${
+            currentPage === 1 ? "bg-gray-500 text-white" : "bg-gray-300"
+          } rounded`}
         >
           1
         </button>,
@@ -129,7 +147,9 @@ const ProductsPage = () => {
         <button
           key={i}
           onClick={() => setCurrentPage(i)}
-          className={`px-3 py-1 mx-1 ${currentPage === i ? "bg-gray-500 text-white" : "bg-gray-300"} rounded`}
+          className={`px-3 py-1 mx-1 ${
+            currentPage === i ? "bg-gray-500 text-white" : "bg-gray-300"
+          } rounded`}
         >
           {i}
         </button>
@@ -144,7 +164,11 @@ const ProductsPage = () => {
         <button
           key={totalPages}
           onClick={() => setCurrentPage(totalPages)}
-          className={`px-3 py-1 mx-1 ${currentPage === totalPages ? "bg-gray-500 text-white" : "bg-gray-300"} rounded`}
+          className={`px-3 py-1 mx-1 ${
+            currentPage === totalPages
+              ? "bg-gray-500 text-white"
+              : "bg-gray-300"
+          } rounded`}
         >
           {totalPages}
         </button>
@@ -169,7 +193,10 @@ const ProductsPage = () => {
     <div className="w-full font-montserrat bg-white text-black">
       <Header />
       <div className="py-[5%] mt-16 w-full flex flex-col justify-start lgss:px-14">
-        <HeaderText className={"text-black pt-5 ml-8"} title={"Discover physical digital and NFT artworks "} />
+        <HeaderText
+          className={"text-black pt-5 ml-8"}
+          title={"Discover physical digital and NFT artworks "}
+        />
         <div className="w-full px-[15%] lgss:px-0">
           <ProductSlider products={products} />
         </div>
@@ -181,48 +208,56 @@ const ProductsPage = () => {
                 <div className="">
                   <button
                     onClick={() => setActiveScreen(1)}
-                    className={activeScreen === 1 ? "text-primary border-primary border-b-2 font-semibold px-[12px]" : "px-[12px]"}
+                    className={
+                      activeScreen === 1
+                        ? "text-primary border-primary border-b-2 font-semibold px-[12px]"
+                        : "px-[12px]"
+                    }
                   >
                     ALL
                   </button>
                   <button
                     onClick={() => setActiveScreen(2)}
-                    className={activeScreen === 2 ? "text-primary border-primary border-b-2 font-semibold px-[12px]" : "px-[12px]"}
+                    className={
+                      activeScreen === 2
+                        ? "text-primary border-primary border-b-2 font-semibold px-[12px]"
+                        : "px-[12px]"
+                    }
                   >
                     PHYSICAL
                   </button>
                   <button
                     onClick={() => setActiveScreen(3)}
-                    className={activeScreen === 3 ? "text-primary border-primary border-b-2 font-semibold px-[12px]" : "px-[12px]"}
+                    className={
+                      activeScreen === 3
+                        ? "text-primary border-primary border-b-2 font-semibold px-[12px]"
+                        : "px-[12px]"
+                    }
                   >
                     DIGITAL
                   </button>
                   <button
                     onClick={() => setActiveScreen(4)}
-                    className={activeScreen === 4 ? "text-primary border-primary border-b-2 font-semibold px-[12px]" : "px-[12px]"}
+                    className={
+                      activeScreen === 4
+                        ? "text-primary border-primary border-b-2 font-semibold px-[12px]"
+                        : "px-[12px]"
+                    }
                   >
-                    NFT
+                    NFTs
                   </button>
                 </div>
               </div>
-              <a href="#language" className="hover:underline flex text-[18px] py-4 lgss:py-0 gap-4 items-center uppercase">
-                <span>
-                  <img src={footerCountryUK} alt="uk logo" />
-                </span>
-                currency
-                <FaAngleDown />
-              </a>
+              <div className="flex justify-end pr-8 items-center">
+                <FaAngleDown className="cursor-pointer" />
+              </div>
             </div>
-            <div className="w-full lgss:px-12 pb-4">
-              <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-                {loading ? (
-                  <>
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                  </>
-                ) : (
-                  currentItems.map((product, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {loading
+                ? Array.from({ length: itemsPerPage }, (_, index) => (
+                    <TopSlideSkeleton key={index} /> // Render skeleton loaders while loading is true
+                  ))
+                : currentItems.map((product, index) => (
                     <ProductCard
                       key={index}
                       img={product.img}
@@ -230,16 +265,19 @@ const ProductsPage = () => {
                       subtitle={product.subtitle}
                       description={product.description}
                       description1={product.description1}
+                      category={product.category}
                       price={product.price}
                       quantityAvailable={product.quantityAvailable}
-                      onClick={() => handleImageClick(product.id, product.price, product.title)}
+                      onClick={() =>
+                        handleImageClick(product.id, product.price)
+                      }
                     />
-                  ))
-                )}
-              </div>
+                  ))}
+            </div>
+            <div className="flex justify-center mt-4">
+              {renderPageNumbers()}
             </div>
           </div>
-          <div className="flex justify-center py-4">{renderPageNumbers()}</div>
         </div>
       </div>
     </div>
